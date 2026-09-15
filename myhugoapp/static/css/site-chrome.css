@@ -248,6 +248,28 @@
 [data-theme='dark'] .navbar-nav .open .dropdown-menu > li > a {
   color: #d5d5d5;
 }
+
+/* UXF-061: data-theme=contrast-Zwilling — schwarze Submenüs statt
+   weißem Bootstrap-Default (weiß + #ffff00-a wäre unlesbar ↔ 1.05:1) */
+[data-theme='contrast'] .dropdown-menu {
+  background-color: #000000;
+  border: 1px solid #ffffff;
+}
+[data-theme='contrast'] .dropdown-menu > li > a {
+  color: #ffffff;
+}
+[data-theme='contrast'] .dropdown-menu > li > a:hover,
+[data-theme='contrast'] .dropdown-menu > li > a:focus {
+  background-color: #000000;
+  color: #ffff00;
+  text-decoration: underline;
+}
+[data-theme='contrast'] .navbar-nav .open .dropdown-menu {
+  background-color: #000000;
+}
+[data-theme='contrast'] .navbar-nav .open .dropdown-menu > li > a {
+  color: #ffffff;
+}
 [data-theme='dark'] .navbar-form .form-control {
   background-color: #3c3c3c;
   border-color: #555;
@@ -476,6 +498,22 @@
 }
 [data-theme='dark'] .breadcrumb-item.active {
   color: #adb5bd;
+}
+
+/* UXF-061: contrast-Zwilling — schwarzer Breadcrumb statt hellem
+   #f5f5f5 (gelber Link darauf wäre unlesbar) */
+[data-theme='contrast'] .breadcrumb {
+  background-color: #000000;
+  border-bottom: 1px solid #ffffff;
+}
+[data-theme='contrast'] .breadcrumb-item a {
+  color: #ffff00;
+}
+[data-theme='contrast'] .breadcrumb-item a:hover {
+  color: #ffdd00;
+}
+[data-theme='contrast'] .breadcrumb-item.active {
+  color: #ffffff;
 }
 
 /* ==== badge-toast.html ==== */

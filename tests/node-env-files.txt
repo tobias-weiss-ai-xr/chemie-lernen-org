@@ -83,3 +83,4 @@ ux-rendered.test.mjs
 site-structure.test.mjs
 mobile-rendered.test.mjs
 calculators-rendered.test.mjs
+contrast-nav.test.mjs

@@ -261,3 +261,87 @@ export const OVERFLOW_SRC = `(() => {
   }
   return out;
 })()`;
+
+/**
+ * UXF-061: Theme-scoped NAV/Header-Komponenten (Dropdown-Submenüs,
+ * Breadcrumb, Nav-Suche). Liest computed style DIREKT — auch bei
+ * display:none/Dropdown-geschlossen — und prüft effektives BG + WCAG.
+ * Fängt die Klasse, die der Ganzseiten-Scan (SCAN_SRC) verpasst:
+ * geschlossene Submenüs sind unsichtbar und werden dort übersprungen.
+ * Gibt Verstöße als [{sel, text, fg, bg, ratio, need}] zurück.
+ */
+export const NAV_CHECKS_SRC = `(() => {
+  const lum = (r, g, b) => {
+    const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+  };
+  const ratio = (fg, bg) => {
+    const l1 = lum(fg.r, fg.g, fg.b), l2 = lum(bg.r, bg.g, bg.b);
+    return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+  };
+  const parse = (c) => {
+    const m = c && c.match && c.match(/rgba?\\(([\\d.]+),\\s*([\\d.]+),\\s*([\\d.]+)(?:,\\s*([\\d.]+))?\\)/);
+    return m ? { r: +m[1], g: +m[2], b: +m[3], a: m[4] === undefined ? 1 : +m[4] } : null;
+  };
+  const blend = (t, b) => ({
+    r: t.r * t.a + b.r * (1 - t.a),
+    g: t.g * t.a + b.g * (1 - t.a),
+    b: t.b * t.a + b.b * (1 - t.a),
+  });
+  // Effektiver BG: Vom Element aufwärts (computed — funktioniert auch
+  // bei display:none, weil die Kaskade die Farben trotzdem vergibt).
+  const effBg = (el) => {
+    const layers = [];
+    let e = el;
+    while (e) {
+      const c = parse(getComputedStyle(e).backgroundColor);
+      if (c && c.a > 0) {
+        layers.push(c);
+        if (c.a >= 0.999) break;
+      }
+      e = e.parentElement;
+    }
+    if (!layers.length) {
+      const bb = parse(getComputedStyle(document.body).backgroundColor);
+      return bb || { r: 255, g: 255, b: 255 };
+    }
+    let base = layers[layers.length - 1];
+    for (let i = layers.length - 2; i >= 0; i--) base = blend(layers[i], base);
+    return base;
+  };
+  const out = [];
+  const check = (sel, text) => {
+    for (const el of document.querySelectorAll(sel)) {
+      const cs = getComputedStyle(el);
+      const fg = parse(cs.color);
+      if (!fg) continue;
+      const bg = effBg(el);
+      const r = ratio(fg, bg);
+      const fsz = parseFloat(cs.fontSize);
+      const bold = parseInt(cs.fontWeight, 10) >= 700;
+      const large = fsz >= 24 || (fsz >= 18.66 && bold);
+      const need = large ? 3 : 4.5;
+      if (r < need) {
+        out.push({
+          sel: sel + ' > ' + (el.className && typeof el.className === 'string' ? el.className.split(/\\s+/)[0] : el.tagName.toLowerCase()),
+          text,
+          fg: cs.color,
+          bg: 'rgb(' + Math.round(bg.r) + ', ' + Math.round(bg.g) + ', ' + Math.round(bg.b) + ')',
+          ratio: +r.toFixed(2),
+          need,
+        });
+      }
+    }
+  };
+  // 1) Submenü-Links (Dropdown). Auch geschlossen prüfbar: computed style gilt,
+  //    auch wenn display:none das Zeichnen unterdrückt.
+  check('.dropdown-menu > li > a', 'Submenu-Link');
+  check('.dropdown-menu', 'Submenu-Hintergrund');
+  check('.navbar-nav .open .dropdown-menu > li > a', 'Submenu-Link (offen)');
+  // 2) Breadcrumb-Nav.
+  check('.breadcrumb-item a', 'Breadcrumb-Link');
+  check('.breadcrumb-item.active', 'Breadcrumb-aktiv');
+  // 3) Navbar-Suche (Form-Control).
+  check('.navbar-form .form-control', 'Navbar-Suche');
+  return out;
+})()`;
