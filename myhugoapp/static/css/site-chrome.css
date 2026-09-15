@@ -19,6 +19,26 @@
   }
 }
 
+/* Split-Dropdown (UX: Label navigiert, Caret öffnet Submenü) — z. B. „Lehrende” */
+.navbar-nav li.dropdown > a.dropdown-label {
+  float: left;
+  padding-right: 4px;
+}
+.navbar-nav li.dropdown > a.dropdown-caret {
+  float: left;
+  padding-left: 6px;
+  padding-right: 10px;
+  margin-left: -2px;
+}
+@media (max-width: 1199px) and (min-width: 992px) {
+  .navbar-nav li.dropdown > a.dropdown-label {
+    padding-left: 10px;
+  }
+  .navbar-nav li.dropdown > a.dropdown-caret {
+    padding-right: 8px;
+  }
+}
+
 /* Dropdown menu styling */
 .dropdown-menu {
   min-width: 220px;

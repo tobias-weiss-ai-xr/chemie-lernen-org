@@ -141,6 +141,49 @@ Verschiedene Metalle färben die Brennerflamme charakteristisch:
 
 ---
 
+## Arbeitsblatt: Neutralisation einer Salzsäure-Lösung
+
+**Ziel**: Bestimmung der Konzentration einer unbekannten Salzsäure-Lösung durch Titration mit Natronlauge.
+
+**Material**: Bürette (25 mL), Erlenmeyerkolben (100 mL), Messzylinder, Magnetrührer, pH-Meter oder Indikator (Phenolphthalein)
+
+**Chemikalien**: Salzsäure (c ≈ 0,1 mol/L — unbekannt), Natronlauge (c = 0,1 mol/L — Maßlösung)
+
+**Durchführung**:
+1. 10 mL der Salzsäure-Lösung in den Erlenmeyerkolben geben
+2. 2-3 Tropfen Phenolphthalein-Lösung zugeben
+3. Die Bürette mit Natronlauge befüllen
+4. Unter ständigem Rühren die Natronlauge tropfenweise zugeben
+5. Stoppen, sobald die Lösung blassrosa umschlägt (Äquivalenzpunkt)
+6. Verbrauch an Natronlauge ablesen und notieren
+7. Den Versuch wiederholen (Mittelwert aus 3 Messungen)
+
+**Auswertung**: $c(Säure) = \frac{c(Lauge) \cdot V(Lauge)}{V(Säure)}$
+
+**Bewertungskriterien** (je 5 Punkte):
+| Kriterium | 1 | 3 | 5 |
+|-----------|---|---|---|
+| Durchführung | Unsicher, fehlerhaft | Überwiegend korrekt | Selbstständig, präzise |
+| Messgenauigkeit | > 10% Abweichung | < 5% Abweichung | < 2% Abweichung |
+| Auswertung | Fehlerhaft | Ansatz erkennbar | Korrekt mit Diskussion |
+| Protokoll | Unvollständig | Strukturiert | Vollständig, sauber |
+
+---
+
+## Bewertungsmatrix für Schülerübungen (Experimentierkompetenz)
+
+Diese 20-Punkte-Matrix eignet sich zusätzlich zur obenstehenden Versuchsmatrix — etwa für offene Übungsformen ohne klassisches Protokoll.
+
+| Bereich | max. Punkte | Kriterien |
+|---------|-------------|-----------|
+| **Planung** | 4 | Hypothesenbildung, Versuchsaufbau, Variablenkontrolle |
+| **Durchführung** | 5 | Gerätehandhabung, Sicherheit, Teamarbeit, Sauberkeit |
+| **Beobachtung** | 4 | Präzise Protokollierung, Messwerterfassung |
+| **Auswertung** | 5 | Dateninterpretation, Fehlerdiskussion, Schlussfolgerung |
+| **Präsentation** | 2 | Verständlichkeit, Fachsprache, Visualisierung |
+
+---
+
 ## Digitale Materialien
 
 ### Einsatz interaktiver Rechner im Unterricht

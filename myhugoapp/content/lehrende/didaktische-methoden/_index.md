@@ -15,6 +15,14 @@ Dieser Bereich bietet einen Überblick über bewährte Unterrichtsmethoden für 
 
 ---
 
+## Kognitive Psychologie im Chemieunterricht
+
+- **Kognitive Lasttheorie**: Reduktion der kognitiven Belastung durch effektive Medientypisierung und Sequenzierung von Lerninhalten
+- **Split-Attention-Prinzip**: Zusammengehörige Informationen (z.B. Molekülstruktur + Beschriftung) räumlich integriert darstellen
+- **Segmentierung**: Komplexe chemische Prozesse in aufeinander aufbauende Schritte unterteilen
+
+---
+
 ## Kompetenzorientierter Unterricht
 
 Der kompetenzorientierte Unterricht zielt nicht nur auf die Vermittlung von Faktenwissen ab, sondern auf den Erwerb übergreifender Fähigkeiten. Die KMK-Bildungsstandards für Chemie (Mittlerer Schulabschluss) definieren vier Kompetenzbereiche:
@@ -150,6 +158,39 @@ Scaffolding bedeutet, den Lernenden gezielte Unterstützung („Gerüste“) anz
 | Kommunikation und Teamarbeit | Kollaboratives Lernen, Handlungsorientierter Unterricht |
 | Selbstständigkeit fördern | Stationenlernen, Projektarbeit |
 | Digitale Kompetenzen | Medien-Didaktik (siehe [Medien-Didaktik](/lehrende/medien-didaktik/)) |
+
+---
+
+## Unterrichtsbausteine und Stundenentwürfe
+
+### Unterrichtseinheit: Säure-Base-Titration (90 Minuten)
+
+| Phase | Zeit | Inhalt | Methode | Material |
+|-------|------|--------|---------|----------|
+| Einstieg | 10 min | Problemorientierter Einstieg: "Wie viel Säure ist in Cola?" | Unterrichtsgespräch mit Demonstration | Alltagsbeispiele, pH-Indikator |
+| Erarbeitung I | 25 min | Funktionsweise der Titration, Äquivalenzpunkt | Lehrervortrag + interaktiver [Titrations-Simulator](/titrations-simulator/) | Beamer, Simulator |
+| Erarbeitung II | 30 min | Praktische Titration einer unbekannten Probelösung | Schulexperiment in Partnerarbeit | Bürette, Maßlösung, Indikator |
+| Sicherung | 15 min | Auswertung der Messdaten, Berechnung der Konzentration | Einzelarbeit mit [Stöchiometrie-Rechner](/stoechiometrie-rechner/) | Arbeitsblatt, Taschenrechner |
+| Reflexion | 10 min | Fehlerquellen diskutieren, Bezug zum Alltag herstellen | Plenumsdiskussion | Tafelbild |
+
+### Unterrichtseinheit: Atombau und Periodensystem (45 Minuten)
+
+| Phase | Zeit | Inhalt | Methode | Material |
+|-------|------|--------|---------|----------|
+| Einstieg | 5 min | Rätsel: "Ordnung im Chaos der Elemente" | Schülervortrag, Mindmap | Bildkarten der Elemente |
+| Erarbeitung | 20 min | Schalenmodell, Elektronenkonfiguration, Periodizität | Interaktive Erkundung mit [Periodensystem](/perioden-system-der-elemente/) | Tablets/PCs mit 3D-PSE |
+| Vertiefung | 12 min | Periodische Trends (Atomradius, Ionisierungsenergie) | Partnerarbeit mit [Periodische-Trends-Rechner](/periodische-trends/) | Arbeitsblatt |
+| Sicherung | 8 min | Zusammenfassung: "Das PSE als Landkarte der Elemente" | Tafelbild, Kurztest mit dem [Übungsgenerator](/uebungsgenerator/) | Quiz-Vorlage |
+
+### Unterrichtseinheit: Chemisches Gleichgewicht (90 Minuten)
+
+| Phase | Zeit | Inhalt | Methode | Material |
+|-------|------|--------|---------|----------|
+| Einstieg | 10 min | Alltagsphänomen: "Warum riecht man Parfüm im ganzen Raum?" | Demonstration: Duftstoffausbreitung | Parfümprobe |
+| Erarbeitung I | 25 min | Dynamisches Gleichgewicht, Massenwirkungsgesetz | Simulation mit [Gleichgewichts-Rechner](/chemisches-gleichgewicht/) | Beamer, interaktive Simulation |
+| Erarbeitung II | 30 min | Prinzip von Le Chatelier, Verschiebung des Gleichgewichts | Experiment in Kleingruppen | Ammoniak-Gleichgewicht, Indikator |
+| Sicherung | 15 min | Anwendungsaufgaben: Ammoniaksynthese, Essigherstellung | Partnerarbeit | Aufgabenkarten |
+| Reflexion | 10 min | Bedeutung für industrielle Prozesse | Diskussion | Tafelbild |
 
 ---
 

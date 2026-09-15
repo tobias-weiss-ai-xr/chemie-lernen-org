@@ -64,6 +64,33 @@
         <ul class="nav navbar-nav">
           {{ range .Site.Menus.main.ByWeight }}
             {{ if .HasChildren }}
+              {{ if ne .URL "#" }}
+              <!-- Split Dropdown: Label navigiert zur Section, Caret öffnet Submenü -->
+              <li class="dropdown{{ if $.IsMenuCurrent "main" . }} active{{ end }}">
+                <a href="{{ .URL }}" class="dropdown-label" role="button" aria-label="{{ .Name }}">{{ .Name }}</a>
+                <a href="#" class="dropdown-toggle dropdown-caret" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" aria-label="{{ .Name }} Menü anzeigen"><span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu" aria-label="{{ .Name }} Unterseite">
+                  {{ range .Children }}
+                    {{ if .HasChildren }}
+                      <li class="dropdown-submenu" role="none">
+                        <a href="#" role="menuitem" aria-label="{{ .Name }}" tabindex="-1">{{ .Name }}</a>
+                        <ul class="dropdown-menu" role="menu" aria-label="{{ .Name }} Unterseite">
+                          {{ range .Children }}
+                            <li{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }} role="none">
+                              <a href="{{ .URL }}" role="menuitem" aria-label="{{ .Name }}">{{ .Name }}</a>
+                            </li>
+                          {{ end }}
+                        </ul>
+                      </li>
+                    {{ else }}
+                      <li{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }} role="none">
+                        <a href="{{ .URL }}" role="menuitem" aria-label="{{ .Name }}">{{ .Name }}</a>
+                      </li>
+                    {{ end }}
+                  {{ end }}
+                </ul>
+              </li>
+              {{ else }}
               <!-- Dropdown Menu -->
               <li class="dropdown{{ if $.IsMenuCurrent "main" . }} active{{ end }}">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" aria-label="{{ .Name }} Menü anzeigen">
@@ -90,6 +117,7 @@
                   {{ end }}
                 </ul>
               </li>
+              {{ end }}
             {{ else }}
               <!-- Regular Menu Item -->
               <li{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }}>

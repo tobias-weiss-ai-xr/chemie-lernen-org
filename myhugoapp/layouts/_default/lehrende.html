@@ -1,0 +1,164 @@
+{{ define "css" }}
+<style>
+/* Lehrende-Übersicht (Lehrer-Hub) */
+.lehrende-hero {
+  margin: 0 0 28px;
+}
+.lehrende-hero h1 {
+  font-size: 2rem;
+  margin: 0 0 8px;
+}
+.lehrende-hero .lead {
+  font-size: 1.1rem;
+  color: #495057;
+  margin-bottom: 0;
+}
+
+/* Sektionen (Zwillinge für light/dark/contrast via CSS-Variablen) */
+.lehrende-block {
+  margin: 0 0 34px;
+}
+.lehrende-block h2 {
+  font-size: 1.4rem;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 8px;
+  margin-bottom: 18px;
+}
+.lehrende-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+.lehrende-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--card-border, #dee2e6);
+  border-radius: 8px;
+  padding: 18px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+.lehrende-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+.lehrende-card .lc-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.lehrende-card .lc-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0 0 6px;
+  color: #0056b3;
+}
+.lehrende-card .lc-desc {
+  font-size: 0.95rem;
+  color: #565656;
+  flex: 1 1 auto;
+}
+.lehrende-card .lc-tag {
+  margin-top: 12px;
+  align-self: flex-start;
+  font-size: 0.8rem;
+  color: #007bff;
+  font-weight: 600;
+}
+/* Tools-Reihe: kompaktere Karten */
+.lehrende-grid--tools .lehrende-card {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+.lehrende-grid--tools .lc-icon {
+  font-size: 1.6rem;
+  margin: 0;
+}
+.lehrende-grid--tools .lc-title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Dark Theme */
+[data-theme='dark'] {
+  --card-bg: #2b2b2b;
+  --card-border: #444;
+}
+[data-theme='dark'] .lehrende-card .lc-desc { color: #cfcfcf; }
+[data-theme='dark'] .lehrende-card { color: #e0e0e0; }
+[data-theme='dark'] .lehrende-card .lc-title { color: #9ecbff; }
+[data-theme='dark'] .lehrende-hero .lead { color: #cfcfcf; }
+/* Contrast Theme */
+[data-theme='contrast'] {
+  --card-bg: #000000;
+  --card-border: #fff;
+}
+[data-theme='contrast'] .lehrende-card .lc-desc { color: #ffffff; }
+[data-theme='contrast'] .lehrende-card { color: #ffffff; }
+[data-theme='contrast'] .lehrende-card .lc-title { color: #ffff00; }
+[data-theme='contrast'] .lehrende-hero .lead { color: #ffffff; }
+[data-theme='contrast'] .lehrende-card .lc-tag { color: #ffff00; }
+@media (max-width: 600px) {
+  .lehrende-hero h1 { font-size: 1.6rem; }
+}
+</style>
+{{ end }}
+
+{{ define "main" }}
+<div class="lehrende-hero">
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.subtitle }}<p class="lead">{{ . }}</p>{{ end }}
+</div>
+
+{{ .Content }}
+
+<div class="lehrende-block">
+  <h2>Didaktische Grundlagen</h2>
+  <div class="lehrende-grid" role="list">
+    {{ range sort .Sections "Params.weight" }}
+      <a class="lehrende-card" href="{{ .RelPermalink }}" role="listitem">
+        <span class="lc-icon" aria-hidden="true">{{ with .Params.icon }}{{ . }}{{ else }}📄{{ end }}</span>
+        <div>
+          <h3 class="lc-title">{{ .Title }}</h3>
+          <p class="lc-desc">{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
+        </div>
+      </a>
+    {{ end }}
+    {{/* mayers-prinzipien ist eine reguläre Seite im Section-Root */}}
+    {{ range .RegularPages }}
+      <a class="lehrende-card" href="{{ .RelPermalink }}" role="listitem">
+        <span class="lc-icon" aria-hidden="true">{{ with .Params.icon }}{{ . }}{{ else }}📄{{ end }}</span>
+        <div>
+          <h3 class="lc-title">{{ .Title }}</h3>
+          <p class="lc-desc">{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</p>
+        </div>
+      </a>
+    {{ end }}
+  </div>
+</div>
+
+<div class="lehrende-block" id="werkzeuge">
+  <h2>Werkzeuge für Lehrkräfte</h2>
+  <p>Unsere interaktiven Werkzeuge direkt im Unterricht einsetzen — Übungen erstellen, Lernstände verfolgen und Materialien generieren.</p>
+  <div class="lehrende-grid lehrende-grid--tools" role="list">
+    {{ range site.Menus.main }}
+      {{ if eq .Name "Lehrende" }}
+        {{ range .Children }}
+          {{ if .URL }}
+          <a class="lehrende-card" href="{{ .URL }}" role="listitem" aria-label="{{ .Name }}">
+            <span class="lc-icon" aria-hidden="true">🔧</span>
+            <span class="lc-title">{{ .Name }}</span>
+          </a>
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}
