@@ -84,6 +84,7 @@ api/calc-rag-index.json
 api/data/users.json
 api/data/chemie-sessions.json
 api/data/theme-overrides.json
+api/data/bloom-targets.json
 
 # taskfleet worktrees (do not commit)
 .tf-worktrees/

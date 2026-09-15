@@ -51,4 +51,29 @@ describe('recommendedStrategy', () => {
   it('defaults to differentiate otherwise', () => {
     expect(recommendedStrategy({ loMastery: 0.3, prereqAvg: 0.9 })).toBe('differentiate');
   });
+
+  // ── Differentiation (zpd-deepdive-differentiation) ──────────────
+  it('recommends differentiate when the objective Bloom == learner target (advance ceiling)', () => {
+    expect(recommendedStrategy({ loMastery: 0.3, prereqAvg: 0.9, bloom: 3 }, { targetBloomIndex: 3 })).toBe(
+      'differentiate'
+    );
+  });
+
+  it('recommends differentiate when the objective Bloom exceeds the learner target', () => {
+    expect(recommendedStrategy({ loMastery: 0.3, prereqAvg: 0.9, bloom: 5 }, { targetBloomIndex: 4 })).toBe(
+      'differentiate'
+    );
+  });
+
+  it('does not force differentiate when bloom is below target (falls through to normal logic)', () => {
+    expect(recommendedStrategy({ loMastery: 0.0, prereqAvg: 0.9, bloom: 2 }, { targetBloomIndex: 4 })).toBe(
+      'scaffold'
+    );
+  });
+
+  it('ignores the targetBloomIndex option when no bloom is present (backward compatible)', () => {
+    expect(recommendedStrategy({ loMastery: 0.5, prereqAvg: 0.9 }, { targetBloomIndex: 3 })).toBe(
+      'differentiate'
+    );
+  });
 });

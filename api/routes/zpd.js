@@ -12,24 +12,74 @@ import {
   recommendedStrategy,
   upsertObjectiveState,
   ZPD_THRESHOLDS,
+  bloomIndex,
 } from '../services/zpd-engine.js';
 import { completeObjective } from '../auth-db.js';
+import { getBloomTarget, setBloomTarget } from '../services/bloom-target.js';
 
 const router = Router();
+
+/**
+ * GET /api/zpd/bloom-target
+ * Returns the current user's per-learner Bloom ceiling (1–6).
+ */
+router.get('/api/zpd/bloom-target', requireAuth, async (req, res) => {
+  try {
+    const t = getBloomTarget(req.user.id);
+    return res.json({ ok: true, targetBloomIndex: t, bloomLevel: bloomIndex(t) });
+  } catch (err) {
+    return res.status(500).json({ error: 'getBloomTarget failed', detail: err.message });
+  }
+});
+
+/**
+ * POST /api/zpd/bloom-target
+ * body: { targetBloomIndex: 1..6 | Bloom level string }
+ * Sets the current user's per-learner Bloom ceiling.
+ */
+router.post('/api/zpd/bloom-target', requireAuth, async (req, res) => {
+  try {
+    const { targetBloomIndex } = req.body || {};
+    if (targetBloomIndex == null) {
+      return res.status(400).json({ error: 'targetBloomIndex is required' });
+    }
+    const result = setBloomTarget(req.user.id, targetBloomIndex);
+    if (!result.ok) {
+      return res.status(400).json({ error: result.error });
+    }
+    return res.json(result);
+  } catch (err) {
+    return res.status(500).json({ error: 'setBloomTarget failed', detail: err.message });
+  }
+});
 
 /**
  * GET /api/zpd/next?path=<curriculumSlug>
  */
 router.get('/api/zpd/next', requireAuth, async (req, res) => {
   try {
-    const next = await nextObjectiveInZPD(req.user.id, req.query.path || null);
+    // Bloom ceiling from query param (optional) else the user's profile.
+    const rawTarget = req.query.targetBloomIndex;
+    const target =
+      rawTarget != null && typeof rawTarget === 'string' && rawTarget.trim() !== ''
+        ? Number(rawTarget)
+        : null;
+    const next = await nextObjectiveInZPD(req.user.id, req.query.path || null, null, target);
     if (!next) {
-      return res.json({ inZPD: false, next: null, recommendedStrategy: null });
+      return res.json({
+        inZPD: false,
+        next: null,
+        recommendedStrategy: null,
+        targetBloomIndex: target != null ? target : getBloomTarget(req.user.id),
+      });
     }
     return res.json({
       inZPD: true,
       next,
-      recommendedStrategy: recommendedStrategy(next),
+      recommendedStrategy: recommendedStrategy(next, {
+        targetBloomIndex: target != null ? target : getBloomTarget(req.user.id),
+      }),
+      targetBloomIndex: target != null ? target : getBloomTarget(req.user.id),
     });
   } catch (err) {
     return res.status(500).json({ error: 'nextInZPD failed', detail: err.message });

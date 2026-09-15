@@ -69,6 +69,14 @@ vi.mock('../api/services/neo4j.js', () => ({
 
 vi.mock('../api/auth-db.js', () => ({
   getGamification: vi.fn(() => ({})),
+  getBloomTarget: vi.fn(() => 6),
+}));
+
+vi.mock('../api/services/bloom-target.js', () => ({
+  getBloomTarget: vi.fn(() => 6),
+  setBloomTarget: vi.fn(() => ({ ok: true, targetBloomIndex: 6, bloomLevel: 'create' })),
+  normalizeBloomTarget: vi.fn((t) => (t >= 1 && t <= 6 ? t : null)),
+  bloomIndex: vi.fn((l) => (l >= 1 && l <= 6 ? l : 0)),
 }));
 
 vi.mock('../api/learning-engine.js', () => ({
@@ -191,6 +199,7 @@ describe('GET /api/learning-paths/:slug/next', () => {
       inZPD: false,
       next: null,
       recommendedStrategy: null,
+      bloomTarget: 6,
     });
 
     // Verify nextObjectiveInZPD was called with correct arguments
@@ -237,7 +246,9 @@ describe('GET /api/learning-paths/:slug/next', () => {
     expect(res.status).toBe(200);
 
     expect(mockNextObjectiveInZPD).toHaveBeenCalledWith('user-456', pathSlug);
-    expect(mockRecommendedStrategy).toHaveBeenCalledWith(mockNext);
+    expect(mockRecommendedStrategy).toHaveBeenCalledWith(mockNext, {
+      targetBloomIndex: expect.any(Number),
+    });
   });
 
   test('recommends assess strategy for near-mastered objective', async () => {

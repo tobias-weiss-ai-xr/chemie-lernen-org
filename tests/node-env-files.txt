@@ -75,6 +75,8 @@ theme-overrides.integration.test.mjs
 theme-overrides.test.mjs
 verduennungsrechner.test.js
 zpd-engine-query.test.mjs
+bloom-target-authdb.test.mjs
+gamification-profile-bloom.test.mjs
 zpd-engine.test.mjs
 zpd-route.test.mjs
 contrast-rendered.test.mjs

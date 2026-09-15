@@ -14,6 +14,7 @@
 import { Router } from 'express';
 import pino from 'pino';
 import { requireAuth } from '../auth.js';
+import { getBloomTarget, setBloomTarget } from '../services/bloom-target.js';
 import {
   getGamification,
   awardXp,
@@ -27,6 +28,7 @@ import { BADGE_INFO } from '../services/badges.js';
 import { sessionStore } from '../services/session.js';
 
 const router = Router();
+const BLOOM_LEVELS = ['remember', 'understand', 'apply', 'analyze', 'evaluate', 'create'];
 const logger = pino({
   level: process.env.LOG_LEVEL || 'info',
   ...(process.env.NODE_ENV !== 'production' && {
@@ -197,10 +199,45 @@ router.get('/api/gamification/profile', requireAuth, async (req, res) => {
       badges,
       completedObjectives: completedStats,
       xpBreakdown,
+      targetBloomIndex: getBloomTarget(req.user.id),
+      bloomLevel: BLOOM_LEVELS[getBloomTarget(req.user.id) - 1] || '',
+      isDefaultBloomTarget: getBloomTarget(req.user.id) === 6,
     });
   } catch (err) {
     logger.error({ err: err, message: err.message || String(err) }, '[gamification] profile error');
     res.status(500).json({ error: 'Profil konnte nicht geladen werden' });
+  }
+});
+
+router.post('/api/gamification/profile', requireAuth, async (req, res) => {
+  try {
+    const body = req.body || {};
+    const { targetBloomIndex, bloomLevel } = body;
+    if (targetBloomIndex == null && bloomLevel == null) {
+      return res.status(400).json({ error: 'targetBloomIndex oder bloomLevel ist erforderlich' });
+    }
+    const value = targetBloomIndex != null ? targetBloomIndex : bloomLevel;
+    const result = setBloomTarget(req.user.id, value);
+    if (!result.ok) {
+      return res
+        .status(400)
+        .json({
+          error: result.error,
+          valid:
+            'targetBloomIndex: 1-6, bloomLevel: remember|understand|apply|analyze|evaluate|create',
+        });
+    }
+    res.json({
+      targetBloomIndex: result.targetBloomIndex,
+      bloomLevel: result.bloomLevel,
+      isDefaultBloomTarget: result.targetBloomIndex === 6,
+    });
+  } catch (err) {
+    logger.error(
+      { err: err, message: err.message || String(err) },
+      '[gamification] profile update error'
+    );
+    res.status(500).json({ error: 'Profil konnte nicht aktualisiert werden' });
   }
 });
 

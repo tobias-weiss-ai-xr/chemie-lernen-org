@@ -33,6 +33,7 @@ vi.mock(
     recommendedStrategy: vi.fn(),
     upsertObjectiveState: mockUpsert,
     ZPD_THRESHOLDS: { thetaHigh: 0.8, thetaLow: 0.6 },
+    bloomIndex: (l) => (l >= 1 && l <= 6 ? l : 0),
   })
 );
 
@@ -40,6 +41,21 @@ vi.mock(
   '../api/auth-db.js',
   () => ({
     completeObjective: mockCompleteObjective,
+    getBloomTarget: () => 6,
+    setBloomTarget: () => ({ ok: true, targetBloomIndex: 6 }),
+  })
+);
+
+vi.mock(
+  '../api/services/bloom-target.js',
+  () => ({
+    getBloomTarget: () => 6,
+    setBloomTarget: (id, target) =>
+      target === 6 || target === 'create' || target === 'CREATE'
+        ? { ok: true, targetBloomIndex: 6, bloomLevel: 'create' }
+        : { ok: true, targetBloomIndex: 4, bloomLevel: 'analyze' },
+    normalizeBloomTarget: (t) => (t >= 1 && t <= 6 ? t : null),
+    bloomIndex: (l) => (l >= 1 && l <= 6 ? l : 0),
   })
 );
 
@@ -106,5 +122,54 @@ describe('POST /api/zpd/mastery → completeObjective wiring', () => {
     const res = await postMastery(0.9);
     expect(res.status).toBe(404);
     expect(mockCompleteObjective).not.toHaveBeenCalled();
+  });
+});
+
+describe('GET/POST /api/zpd/bloom-target (differentiation)', () => {
+  let server;
+  let baseURL;
+
+  afterEach(async () => {
+    if (server) await new Promise((resolve) => server.close(resolve));
+  });
+
+  test('returns 401 when unauthenticated', async () => {
+    ({ server, baseURL } = createTestServer(null));
+    const res = await fetch(`${baseURL}/api/zpd/bloom-target`);
+    expect(res.status).toBe(401);
+  });
+
+  test('GET returns the user Bloom target with level', async () => {
+    ({ server, baseURL } = createTestServer({ id: 7 }));
+    const res = await fetch(`${baseURL}/api/zpd/bloom-target`);
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    // auth-db mock returns getBloomTarget()=6 → bloomIndex(6)=6, level from index
+    expect(body.ok).toBe(true);
+    expect(body.targetBloomIndex).toBe(6);
+    expect(body.bloomLevel).toBe(6); // mocked bloomIndex numeric passthrough
+  });
+
+  test('POST accepts a Bloom level string and returns bloomLevel', async () => {
+    ({ server, baseURL } = createTestServer({ id: 7 }));
+    const res = await fetch(`${baseURL}/api/zpd/bloom-target`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ targetBloomIndex: 'analyze' }),
+    });
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    expect(body.ok).toBe(true);
+    expect(body.targetBloomIndex).toBe(4); // 'analyze' → index 4 via bloom-target mock
+  });
+
+  test('POST rejects a missing target', async () => {
+    ({ server, baseURL } = createTestServer({ id: 7 }));
+    const res = await fetch(`${baseURL}/api/zpd/bloom-target`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({}),
+    });
+    expect(res.status).toBe(400);
   });
 });

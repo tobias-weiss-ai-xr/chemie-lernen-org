@@ -21,6 +21,7 @@ import * as learningEngine from '../learning-engine.js';
 import { loadLearningPathsJson } from '../services/content.js';
 import { sessionStore } from '../services/session.js';
 import { nextObjectiveInZPD, recommendedStrategy } from '../services/zpd-engine.js';
+import { getBloomTarget } from '../services/bloom-target.js';
 
 // UXF-034: Query-Params koerzieren — Express macht ?x=a&x=b zu Arrays,
 // .trim()/.toLowerCase() auf Arrays wirft TypeError (500). qs() nimmt bei
@@ -318,8 +319,18 @@ router.get('/api/learning-paths/:slug', async (req, res) => {
 
     if (req.user?.id) {
       try {
-        const next = await nextObjectiveInZPD(req.user.id, req.params.slug);
-        tree.nextInZPD = next ? { next, recommendedStrategy: recommendedStrategy(next) } : null;
+        const effectiveTarget = getBloomTarget(req.user.id);
+        const next = await nextObjectiveInZPD(req.user.id, req.params.slug, null, effectiveTarget);
+        tree.nextInZPD = next
+          ? {
+              next,
+              recommendedStrategy: recommendedStrategy(next, {
+                targetBloomIndex: effectiveTarget,
+              }),
+              bloomTarget: effectiveTarget,
+            }
+          : null;
+        tree.targetBloomIndex = effectiveTarget;
       } catch (zpdErr) {
         logger.warn({ err: zpdErr }, '[learning-paths] nextInZPD failed');
       }
@@ -340,11 +351,31 @@ router.get('/api/learning-paths/:slug', async (req, res) => {
  */
 router.get('/api/learning-paths/:slug/next', requireAuth, async (req, res) => {
   try {
-    const next = await nextObjectiveInZPD(req.user.id, req.params.slug);
+    const rawTarget = qs(req.query.targetBloomIndex);
+    const hasTarget = rawTarget && rawTarget.trim() !== '';
+    const target = hasTarget ? Number(rawTarget) : null;
+    // Backward compatible: without an explicit target we keep the 2-arg call
+    // (engine resolves the user's profile ceiling); with one we pass it through.
+    const next = hasTarget
+      ? await nextObjectiveInZPD(req.user.id, req.params.slug, null, target)
+      : await nextObjectiveInZPD(req.user.id, req.params.slug);
+    const effectiveTarget =
+      hasTarget && !Number.isNaN(target) ? target : getBloomTarget(req.user.id);
     if (!next) {
-      return res.json({ inZPD: false, next: null, recommendedStrategy: null });
+      return res.json({
+        inZPD: false,
+        next: null,
+        recommendedStrategy: null,
+        bloomTarget: effectiveTarget,
+      });
     }
-    return res.json({ inZPD: true, next, recommendedStrategy: recommendedStrategy(next) });
+    const strat = recommendedStrategy(next, { targetBloomIndex: effectiveTarget });
+    return res.json({
+      inZPD: true,
+      next,
+      recommendedStrategy: strat,
+      bloomTarget: effectiveTarget,
+    });
   } catch (err) {
     logger.error({ err }, '[learning-paths] next error');
     return res.status(500).json({ error: 'nextInZPD failed' });

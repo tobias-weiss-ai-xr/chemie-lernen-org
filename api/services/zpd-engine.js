@@ -20,6 +20,10 @@
 import neo4j from 'neo4j-driver';
 import { getNeo4jDriver, NEO4J_DATABASE, toNumberSafe } from './neo4j.js';
 import { subsetMatch } from '../scripts/_neo4j-subset-filter.mjs';
+import {
+  getBloomTarget as authGetBloomTarget,
+  setBloomTarget as authSetBloomTarget,
+} from './bloom-target.js';
 
 export const ZPD_THRESHOLDS = { thetaHigh: 0.8, thetaLow: 0.6 };
 
@@ -34,31 +38,82 @@ export function bloomIndex(level) {
 }
 
 /**
+ * Get a learner's target Bloom depth (spec ZPD-BLOOM-1).
+ * @returns {{targetBloomIndex:number, bloomLevel:string, isDefault:boolean}}
+ */
+export function getBloomTarget(userId) {
+  const idx = authGetBloomTarget(userId);
+  return {
+    targetBloomIndex: idx,
+    bloomLevel: BLOOM_LEVELS[idx - 1] || '',
+    isDefault: idx === 6,
+  };
+}
+
+/**
+ * Set a learner's target Bloom depth (spec ZPD-BLOOM-2). Accepts an integer
+ * 1–6 or a level string. Resolves to a synchronous result for engine parity.
+ * @returns {{ok:boolean, targetBloomIndex?:number, bloomLevel?:string, error?:string}}
+ */
+export function setBloomTarget(userId, target) {
+  const result = authSetBloomTarget(userId, target);
+  if (!result.ok) return result;
+  return {
+    ok: true,
+    targetBloomIndex: result.targetBloomIndex,
+    bloomLevel: result.bloomLevel || BLOOM_LEVELS[result.targetBloomIndex - 1],
+  };
+}
+
+/**
  * Compute the next optimal objective for a user: the highest-Bloom objective
- * currently inside the user's Zone of Proximal Development.
+ * currently inside the user's Zone of Proximal Development. When
+ * `targetBloomIndex` is provided (or fetched from the user's profile), only
+ * objectives at or below that Bloom depth are considered — this is how the
+ * platform implements per-learner differentiation without overwhelming novices.
  *
  * @param {string|number} userId
  * @param {string|null} pathSlug - restrict to objectives of this Curriculum path
  * @param {{thetaHigh:number, thetaLow:number}} [thresholds]
- * @returns {Promise<{slug:string,bloom:number,description:string,prereqAvg:number,loMastery:number}|null>}
+ * @param {number|null} [targetBloomIndex] - optional Bloom ceiling (1–6); when
+ *   omitted, resolved from the user's profile via getBloomTarget().
+ * @returns {Promise<{slug:string,bloom:number,description:string,prereqAvg:number,loMastery:number,filteredOutCount:number}|null>}
  */
-export async function nextObjectiveInZPD(userId, pathSlug = null, thresholds = ZPD_THRESHOLDS) {
+export async function nextObjectiveInZPD(
+  userId,
+  pathSlug = null,
+  thresholds = ZPD_THRESHOLDS,
+  targetBloomIndex = null
+) {
+  if (thresholds == null) thresholds = ZPD_THRESHOLDS; // Resolve the effective Bloom ceiling: caller-supplied wins, else profile.
+  let bloomTarget;
+  if (targetBloomIndex != null) {
+    bloomTarget = Number(targetBloomIndex);
+  } else {
+    bloomTarget = Number(authGetBloomTarget(userId));
+  }
+  if (!Number.isInteger(bloomTarget) || bloomTarget < 1 || bloomTarget > 6) {
+    bloomTarget = 6;
+  }
+
   const driver = getNeo4jDriver();
   const session = driver.session({
     database: NEO4J_DATABASE,
     defaultAccessMode: neo4j.session.READ,
   });
   try {
-    const result = await session.run(
-      `MATCH (lo:LearningObjective)
-       ${subsetMatch('lo')}
-       AND ($pathSlug IS NULL
+    const pathFilter = `($pathSlug IS NULL
             OR EXISTS {
               MATCH (c:Curriculum {slug: $pathSlug})-[:HAS_SUBTOPIC]->(:SubTopic)-[:FULFILLS]->(lo)
             }
             OR EXISTS {
               MATCH (c:Curriculum {slug: $pathSlug})-[:HAS_TOPIC]->(:Topic)-[:HAS_SUBTOPIC]->(:SubTopic)-[:FULFILLS]->(lo)
-            })
+            })`;
+
+    const result = await session.run(
+      `MATCH (lo:LearningObjective)
+       ${subsetMatch('lo')}
+       AND ${pathFilter}
        OPTIONAL MATCH (lo)<-[:PREREQUISITE]-(pre:LearningObjective)
        OPTIONAL MATCH (s:ObjectiveState)-[:FOR]->(pre)
          WHERE s.userId = $userId
@@ -67,11 +122,13 @@ export async function nextObjectiveInZPD(userId, pathSlug = null, thresholds = Z
                  ELSE avg(coalesce(s.mastery, 0.0)) END AS prereqAvg
        OPTIONAL MATCH (ls:ObjectiveState)-[:FOR]->(lo)
          WHERE ls.userId = $userId
-       WITH lo, prereqAvg, coalesce(ls.mastery, 0.0) AS loMastery
+       WITH lo, prereqAvg, coalesce(ls.mastery, 0.0) AS loMastery,
+            coalesce(lo.blooms_index, 3) AS bloom
        WHERE prereqAvg >= $thetaHigh
          AND loMastery <= $thetaLow
+         AND bloom <= $bloomTarget
        RETURN lo.slug AS slug,
-              coalesce(lo.blooms_index, 3) AS bloom,
+              bloom,
               lo.text AS description,
               prereqAvg AS prereqAvg,
               loMastery AS loMastery
@@ -82,9 +139,47 @@ export async function nextObjectiveInZPD(userId, pathSlug = null, thresholds = Z
         pathSlug: pathSlug || null,
         thetaHigh: thresholds.thetaHigh,
         thetaLow: thresholds.thetaLow,
+        bloomTarget,
       }
     );
-    if (result.records.length === 0) return null;
+
+    // Count how many objectives would have matched WITHOUT the Bloom filter but
+    // were excluded because their depth exceeds the learner's ceiling. This is
+    // used by the strategy activator to suggest raising the target when the
+    // learner has effectively outgrown their current ceiling.
+    let filteredOutCount = 0;
+    if (result.records.length === 0) {
+      const countResult = await session.run(
+        `MATCH (lo:LearningObjective)
+         ${subsetMatch('lo')}
+         AND ${pathFilter}
+         AND coalesce(lo.blooms_index, 3) > $bloomTarget
+         OPTIONAL MATCH (lo)<-[:PREREQUISITE]-(pre:LearningObjective)
+         OPTIONAL MATCH (s:ObjectiveState)-[:FOR]->(pre)
+           WHERE s.userId = $userId
+         WITH lo,
+              CASE WHEN count(pre) = 0 THEN 1.0
+                   ELSE avg(coalesce(s.mastery, 0.0)) END AS prereqAvg
+         OPTIONAL MATCH (ls:ObjectiveState)-[:FOR]->(lo)
+           WHERE ls.userId = $userId
+         WITH lo, prereqAvg, coalesce(ls.mastery, 0.0) AS loMastery
+         WHERE prereqAvg >= $thetaHigh
+           AND loMastery <= $thetaLow
+         RETURN count(lo) AS c`,
+        {
+          userId: String(userId),
+          pathSlug: pathSlug || null,
+          thetaHigh: thresholds.thetaHigh,
+          thetaLow: thresholds.thetaLow,
+          bloomTarget,
+        }
+      );
+      filteredOutCount = toNumberSafe(countResult.records[0]?.get('c')) || 0;
+    }
+
+    if (result.records.length === 0) {
+      return null;
+    }
     const r = result.records[0];
     return {
       slug: r.get('slug'),
@@ -92,6 +187,7 @@ export async function nextObjectiveInZPD(userId, pathSlug = null, thresholds = Z
       description: r.get('description'),
       prereqAvg: toNumberSafe(r.get('prereqAvg')),
       loMastery: toNumberSafe(r.get('loMastery')),
+      filteredOutCount,
     };
   } finally {
     await session.close();
@@ -103,14 +199,28 @@ export async function nextObjectiveInZPD(userId, pathSlug = null, thresholds = Z
  * classroom strategies to apply next. Actual strategy behaviour is implemented
  * in the separate roadmap deep-dive changes (R1–R5).
  *
- * @param {{loMastery?:number, prereqAvg?:number}|null} next
- * @param {{hasPeer?:boolean}} [opts]
+ * Differentiation (zpd-deepdive-differentiation): when the surfaced objective's
+ * Bloom index already equals the learner's ceiling and they keep draining the
+ * queue, the learner has outgrown their ceiling → recommend 'differentiate'
+ * (the activator suggests raising the target).
+ *
+ * @param {{loMastery?:number, prereqAvg?:number, bloom?:number}|null} next
+ * @param {{hasPeer?:boolean, targetBloomIndex?:number}} [opts]
  * @returns {'scaffold'|'peer'|'differentiate'|'tool'|'assess'|null}
  */
-export function recommendedStrategy(next, { hasPeer = false } = {}) {
+export function recommendedStrategy(next, { hasPeer = false, targetBloomIndex = null } = {}) {
   if (!next) return null;
   const loMastery = next.loMastery ?? 0;
   const prereqAvg = next.prereqAvg ?? 1;
+  // Differentiation: learner is already operating at (or above) their Bloom
+  // ceiling → suggest advancing the ceiling rather than piling on more of the
+  // same depth.
+  const bloom = next.bloom ?? null;
+  if (bloom != null && targetBloomIndex != null && bloom >= targetBloomIndex) {
+    return 'differentiate';
+  }
+  // Differentiation: nothing is left inside the learner's depth range this
+  // session → suggest adjusting the target upward.
   if (loMastery === 0 && prereqAvg >= 0.8) return 'scaffold';
   if (loMastery > 0.6 && loMastery < 0.8) return 'assess';
   if (hasPeer) return 'peer';
