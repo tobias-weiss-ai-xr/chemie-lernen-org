@@ -23,42 +23,50 @@
 > Hinweis: Bisher nur hubs-client deployt (reicht für Rendering). hubs-admin/spoke/
 > postgrest/dialog folgen in späteren Sprints, sofern Scene-Bearbeitung nötig.
 
-## S40 — E1: Scene-Templates portieren
+## S40 — E1: Scene-Templates portieren — ⏸ DEFERRED 2026-09-16 (indefinite, hubs)
+
 - [ ] S40.1 `ElementRoom`, `PeriodicPavilion`, `LabWing`, `ExperimentalRoom`, `Lobby` aus `hello-webxr` als Hubs-Scenes übernehmen.
 - [ ] S40.2 Pro Element-Raum Default-Scene setzen (Mapping via `chemie-raeume-manifest.json`).
 - [ ] S40.3 Multi-User/Spacial-Audio Smoke-Test in einem Raum.
 
 ## S41 — E2: Rechner ↔ Quiz Integration (offenes Roadmap-Item)
+
 - [ ] S41.1 KG-Beziehung `Calculator --uses--> QuizQuestion` anlegen + befüllen.
 - [ ] S41.2 Hugo-Quiz-Widget auf Rechner-Seiten einbetten (lädt passende Fragen via `/api/quiz`).
 - [ ] S41.3 „Übung generieren"-Button pro Rechner (bestehender `exercise-generator`).
 
 ## S42 — E3: Entity-ZPD + Schüler-Dashboard
+
 - [ ] S42.1 Entity-Level ZPD-Empfehlungen aus `learning-engine`/`assessment-store` exponieren.
 - [ ] S42.2 Schüler-Dashboard-Template (Fortschritt, Empfehlungen).
 - [ ] S42.3 (Parallel) E5: Android — Quiz/Rechner/Pfade Feature-Parity.
 
 ## S43 — E3: Teacher-Dashboard + Fortschritt
+
 - [ ] S43.1 Klassen-/Lehrer-Dashboard (Aggregation aus Assessment-Store).
 - [ ] S43.2 Fortschrittstracking persistenzfest machen.
 - [ ] S43.3 (Parallel) E5: PWA Offline-Cache.
 
 ## S44 — E4: Forschung & Wissensnetz-Maturity
+
 - [ ] S44.1 Mehr Entitäts-Abdeckung in Chemie-Forschung (CI-Pipeline erweitern).
 - [ ] S44.2 KG-Kurations-Workflow (Review/Publish-Gate für Forschungs-Artikel).
 - [ ] S44.3 Graph-UX verbessern (`curricula-graph-viz` finalisieren).
 
-## S45 — E6: SSO + Raum-Verwaltung
+## S45 — E6: SSO + Raum-Verwaltung — ⏸ DEFERRED 2026-09-16 (indefinite, hubs/Reticulum)
+
 - [ ] S45.1 Raum-Invite-Tokens (Reticulum ↔ chemie-lernen.org-Accounts).
 - [ ] S45.2 Raum-Verwaltungs-Panel (Lehrende: Räume erstellen/managen).
 - [ ] S45.3 Räume in Themenbereiche/Lehrpläne einbetten.
 
-## S46 — E7: Public-Share, Performance, Monitoring
-- [ ] S46.1 Signierter Per-Room Share-Token via Traefik-Reverse-Proxy (Reticulum bleibt VPN-only).
+## S46 — E7: Public-Share, Performance, Monitoring (hubs-Teile deferriert)
+
+- [ ] S46.1 Signierter Per-Room Share-Token via Traefik-Reverse-Proxy (Reticulum bleibt VPN-only). — ⏸ DEFERRED 2026-09-16 (hubs)
 - [ ] S46.2 Bundle/Perf-Budgets (bestehende `npm run analyze:bundle` nutzen).
-- [ ] S46.3 Monitoring/Alerting für Reticulum (Health + 503-Wachstum).
+- [ ] S46.3 Monitoring/Alerting für Reticulum (Health + 503-Wachstum). — ⏸ DEFERRED 2026-09-16 (hubs)
 
 ## Acceptance
+
 - [x] `roadmap.md` enthält Sektion „Nächste Epics & Sprints (ab S39)".
 - [x] Alle 120 Räume rendern (503 → 200). ✅ (S39/E1 erledigt)
 - [ ] Rechner↔Quiz-Verknüpfung live.

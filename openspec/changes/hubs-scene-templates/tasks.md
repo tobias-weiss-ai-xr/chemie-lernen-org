@@ -1,5 +1,8 @@
 # Tasks: hubs-scene-templates (S40 / E1)
 
+> **⏸ DEFERRED 2026-09-16 (indefinite)** — vollständig Hubs-bezogen; Visual-Pass und
+> weitere Arbeit auf unbestimmte Zeit verschoben.
+
 ## Design & scaffolding
 
 - [x] OpenSpec change + design (aesthetic mandate, archetypes, plan)

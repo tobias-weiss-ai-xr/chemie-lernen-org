@@ -28,16 +28,16 @@ Last updated: 2026-09-04
 
 ## Active changes (`changes/`)
 
-| Change                            | Tasks | Status                                                           |
-| --------------------------------- | ----- | ---------------------------------------------------------------- |
-| roadmap-next-epics                | 6/29  | roadmap                                                          |
-| zpd-deepdive-differentiation      | 36/43 | in-progress                                                      |
-| zpd-deepdive-formative-assessment | 0/19  | proposed                                                         |
-| zpd-deepdive-peer-collaboration   | 0/13  | proposed                                                         |
-| zpd-deepdive-tech-integration     | 10/11 | in-progress                                                      |
-| per-element-learning-rooms        | 22/23 | in-progress (3.3 a11y: hello-webxr-master nicht auf diesem Host) |
-| hubs-scene-templates              | 19/20 | in-progress (visual pass = human review)                         |
-| zpd-deepdive-scaffolding          | 6/7   | in-progress                                                      |
+| Change                            | Tasks | Status                                                            |
+| --------------------------------- | ----- | ----------------------------------------------------------------- |
+| roadmap-next-epics                | 6/29  | roadmap (hubs-Epics S40/S45/S46 hubs-Tasks deferriert 2026-09-16) |
+| zpd-deepdive-differentiation      | 36/43 | in-progress                                                       |
+| zpd-deepdive-formative-assessment | 0/19  | proposed                                                          |
+| zpd-deepdive-peer-collaboration   | 0/13  | proposed                                                          |
+| zpd-deepdive-tech-integration     | 10/11 | in-progress                                                       |
+| per-element-learning-rooms        | 22/23 | **deferred 2026-09-16** (komplett Hubs/hello-webxr)               |
+| hubs-scene-templates              | 19/20 | **deferred 2026-09-16** (Visual-Pass = menschliche Review)        |
+| zpd-deepdive-scaffolding          | 6/7   | in-progress                                                       |
 
 ## Archived changes (`changes/archive/`)
 

@@ -1,5 +1,8 @@
 # Tasks: per-element-learning-rooms
 
+> **⏸ DEFERRED 2026-09-16 (indefinite)** — vollständig Hubs/hello-webxr-bezogen;
+> Rest-Arbeit (3.3 Audio-Cue, externes Serving) auf unbestimmte Zeit verschoben.
+
 > Status: implemented (app + directory + manifest + reproducible Hubs script).
 > **Hubs-Räume live angelegt (2026-08-17)**: 120 per-Element-Räume via validated
 > reticulum flow (`TURKEY_MODE=1` + Dashboard-Key → `POST /api/v1/hubs`),
