@@ -193,20 +193,36 @@ export function aggregateMastery(userId, objectiveSlug, options = {}) {
 }
 
 /**
- * Top-level topic → LearningObjective slug resolution via the KG is provided
- * by mapTopicToObjectives() (Task 1.5). Keep this module importable without
- * Neo4j so pure tests are DB-free. Throws a clear message if used directly.
+ * resolve a quiz topic / FSRS topicId to `:LearningObjective` slugs via the
+ * `Topic -> SubTopic -> LearningObjective` (FULFILLS) chain. Uses lazy Neo4j
+ * imports so the pure signal helpers stay DB-free in unit tests.
+ * Matches the topic by slug *or* normalized title (case-insensitive).
  */
-// eslint-disable-next-line no-unused-vars -- documented contract param (Task 1.5 service)
-export async function mapTopicToObjectives(_topic) {
-  // Params are the documented contract; actual Neo4j resolution (Task 1.5 of
-  // formative-assessment) is done by the route layer which owns the driver.
-  // Resolved by the caller (route layer) which owns the Neo4j driver; kept here
-  // as the documented contract so consumers don't reach into private stores.
-  throw new Error(
-    'mapTopicToObjectives is resolved by the route layer (it needs a Neo4j driver); ' +
-      'pass already-resolved slugs into aggregateMastery via objectiveSlug.'
-  );
+export async function mapTopicToObjectives(topic) {
+  if (!topic || typeof topic !== 'string' || topic.trim() === '') return [];
+  const [{ getNeo4jDriver, NEO4J_DATABASE }, { subsetMatch }] = await Promise.all([
+    import('./neo4j.js'),
+    import('../scripts/_neo4j-subset-filter.mjs'),
+  ]);
+  const driver = getNeo4jDriver();
+  const session = driver.session({ database: NEO4J_DATABASE });
+  try {
+    const norm = topic.trim().toLowerCase();
+    const result = await session.run(
+      `MATCH (t:Topic)
+       ${subsetMatch('t')}
+       AND (toLower(coalesce(t.title,'')) = $norm OR toLower(coalesce(t.slug,'')) = $norm)
+       MATCH (t)-[:HAS_SUBTOPIC]->(:SubTopic)-[:FULFILLS]->(lo:LearningObjective)
+       ${subsetMatch('lo')}
+       RETURN DISTINCT lo.slug AS slug`,
+      { norm }
+    );
+    return result.records
+      .map((r) => r.get('slug'))
+      .filter((s) => typeof s === 'string' && s.length > 0);
+  } finally {
+    await session.close();
+  }
 }
 
 export default {

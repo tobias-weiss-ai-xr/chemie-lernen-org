@@ -38,6 +38,7 @@ lehrplan-menu.test.js
 lesson-plan.test.js
 malformed-uri.test.mjs
 manifest.test.js
+mastery-aggregator-query.test.mjs
 mastery-aggregator.test.mjs
 modulhandbuch-api.test.js
 modulhandbuch-contrast.test.js
