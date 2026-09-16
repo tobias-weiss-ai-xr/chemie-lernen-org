@@ -12,6 +12,7 @@ calc-stoichiometry-sub.test.js
 chemisches-gleichgewicht.test.js
 chemistry-utils.test.js
 collab-challenges.test.mjs
+collab-routes-peer.test.mjs
 curricula-graph.test.mjs
 curricula-mapper.test.js
 curricula-page-contract.test.js
@@ -85,6 +86,7 @@ zpd-engine-query.test.mjs
 bloom-target-authdb.test.mjs
 gamification-profile-bloom.test.mjs
 zpd-engine-tool-strategy.test.mjs
+zpd-engine-peer.test.mjs
 zpd-engine.test.mjs
 zpd-route.test.mjs
 contrast-rendered.test.mjs

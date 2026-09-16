@@ -18,6 +18,12 @@ import { Router } from 'express';
 import pino from 'pino';
 import { requireAuth } from '../auth.js';
 import * as collabEngine from '../collab-engine.js';
+import {
+  findPeerCandidates,
+  getBloomTarget,
+  curricularDistanceMetric,
+} from '../services/zpd-engine.js';
+import { getAllUsers } from '../auth-db.js';
 
 const router = Router();
 const logger = pino({
@@ -228,5 +234,109 @@ router.post(
     }
   }
 );
+
+// ── ZPD peer matching (peer-collaboration PC-1..PC-5) ─────────
+
+function buildNameMap() {
+  const map = new Map();
+  try {
+    for (const u of getAllUsers()) {
+      map.set(String(u.id), u.name || u.email || null);
+    }
+  } catch {
+    /* non-fatal: leave names null */
+  }
+  return map;
+}
+
+/** Enrich candidate records with resolvable display names. */
+function enrichCandidates(candidates, nameMap) {
+  return candidates.map((c) => ({
+    ...c,
+    displayName: c.displayName || nameMap.get(String(c.userId)) || null,
+  }));
+}
+
+// POST /api/collab/sessions/zpd-match — find ZPD-overlapping peers, optionally
+// creating a collaboration session pre-populated with ZPD context (PC-3).
+router.post('/api/collab/sessions/zpd-match', requireAuth, async (req, res) => {
+  try {
+    const { pathSlug, createSession = false, maxCandidates = 5, name, topic } = req.body || {};
+    const userId = req.user.id;
+
+    const { myNext, candidates: rawCandidates } = await findPeerCandidates(userId, pathSlug, {
+      maxCandidates,
+    });
+    const nameMap = buildNameMap();
+    const candidates = enrichCandidates(rawCandidates, nameMap);
+
+    let session = null;
+    if (createSession && myNext && candidates.length > 0) {
+      const top = candidates[0];
+      const zpdContext = {
+        sharedObjective: top.objectiveSlug,
+        bloomLevel: top.bloom,
+        mkoDirection: top.mkoDirection,
+        curricularDistance: curricularDistanceMetric(pathSlug ? 'same-topic' : 'cross-topic'),
+      };
+      // Create a session with the requesting learner as creator, then invite the
+      // top peer. The session object carries the ZPD rationale for the UI.
+      session = collabEngine.createSession(
+        name || 'ZPD-Lerngruppe',
+        topic || `Gemeinsames Lernen bei ${myNext.slug || ''}`,
+        userId,
+        req.user.displayName || req.user.email
+      );
+      collabEngine.joinSession(session.id, top.userId, top.displayName || 'Peer');
+      session.zpdContext = zpdContext;
+    }
+
+    res.json({
+      myNext,
+      candidates,
+      session,
+    });
+  } catch (err) {
+    logger.error({ err: err, message: err.message || String(err) }, '[collab] zpd-match error');
+    res.status(500).json({ error: 'ZPD-Peers konnten nicht ermittelt werden' });
+  }
+});
+
+// GET /api/collab/peer-status — current user's peer collab context (PC-4).
+router.get('/api/collab/peer-status', requireAuth, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { myNext, candidates } = await findPeerCandidates(userId, null, {
+      maxCandidates: 20,
+    });
+
+    // Determine whether the user is already part of an active collab session.
+    let hasActiveSession = false;
+    let currentSession = null;
+    try {
+      const sessions = collabEngine.listActiveSessions();
+      // listActiveSessions returns sanitised records without participant ids, so
+      // we conservatively check creator membership as the available active flag.
+      const creators = sessions.filter((s) => s.creatorId === userId);
+      if (creators.length > 0) {
+        hasActiveSession = true;
+        currentSession = { id: creators[0].id, participantCount: creators[0].participantCount };
+      }
+    } catch {
+      /* non-fatal */
+    }
+
+    res.json({
+      hasActiveSession,
+      currentSession,
+      myNext,
+      candidateCount: candidates.length,
+      bloomTarget: getBloomTarget(userId).targetBloomIndex,
+    });
+  } catch (err) {
+    logger.error({ err: err, message: err.message || String(err) }, '[collab] peer-status error');
+    res.status(500).json({ error: 'Peer-Status konnte nicht geladen werden' });
+  }
+});
 
 export default router;

@@ -320,3 +320,170 @@ export async function countObjectiveStates(userId) {
     await session.close();
   }
 }
+
+/**
+ * Map a curricular-proximity level to a distance ∈ [0, 1] used by the peer
+ * match score (peer-collaboration PC-2). Lower = closer curricular position.
+ *
+ * @param {'same-objective'|'same-subtopic'|'same-topic'|'cross-topic'|string} level
+ * @returns {number}
+ */
+export function curricularDistanceMetric(level) {
+  switch (level) {
+    case 'same-objective':
+      return 0;
+    case 'same-subtopic':
+      return 0.3;
+    case 'same-topic':
+      return 0.6;
+    case 'cross-topic':
+    default:
+      return 1.0;
+  }
+}
+
+/**
+ * Classify a peer's MKO (more-knowledgeable-other) direction relative to a
+ * requesting learner, based on their mastery of each other's next objective
+ * versus the upper ZPD threshold θ_high.
+ *
+ * @param {number} myMastery mastery of the peer's next objective (0–1)
+ * @param {number} peerMastery mastery of my next objective (0–1)
+ * @param {number} thetaHigh upper ZPD threshold, default ZPD_THRESHOLDS.thetaHigh
+ * @returns {'mko-for-you'|'you-are-mko'|'peer'}
+ */
+export function classifyMKODirection(myMastery, peerMastery, thetaHigh = ZPD_THRESHOLDS.thetaHigh) {
+  if (peerMastery >= thetaHigh) return 'mko-for-you';
+  if (myMastery >= thetaHigh) return 'you-are-mko';
+  return 'peer';
+}
+
+/**
+ * Compute a peer match score ∈ [0, 1] combining Bloom proximity, curricular
+ * proximity and the MKO bonus (peer-collaboration PC-2).
+ *
+ * Score formula:
+ *   1.0 - 0.3·|bloom_A - bloom_B| - 0.2·curricularDistance + 0.2·mkoBonus
+ *
+ * @param {number} myBloom the requesting learner's nextInZPD Bloom index
+ * @param {number} peerBloom the candidate's nextInZPD Bloom index
+ * @param {number} curricularDistance ∈ [0,1], see curricularDistanceMetric()
+ * @param {0|0.2} mkoBonus 0.2 when one learner is the other's MKO
+ * @returns {number}
+ */
+export function peerMatchScore(myBloom, peerBloom, curricularDistance, mkoBonus = 0) {
+  const bloomDelta = Math.abs((Number(myBloom) || 0) - (Number(peerBloom) || 0));
+  const dist = Number(curricularDistance) || 0;
+  const bonus = Number(mkoBonus) || 0;
+  const raw = 1.0 - 0.3 * bloomDelta - 0.2 * dist + 0.2 * bonus;
+  return Math.min(1.0, Math.max(0.0, raw));
+}
+
+/**
+ * Find peer-collaboration candidates whose current learning position (the
+ * objective they are working toward, per their :ObjectiveState) overlaps the
+ * requesting learner's Zone of Proximal Development (peer-collaboration PC-1).
+ *
+ * Runs the requesting learner's own nextInZPD, then queries other learners'
+ * :ObjectiveState records whose Bloom range (±1 of myNext) overlaps, filters
+ * to the same curricular path when `pathSlug` is given, and ranks results by
+ * the composite peer match score.
+ *
+ * @param {string|number} userId
+ * @param {string|null} pathSlug - restrict candidates to this Curriculum path
+ * @param {{maxCandidates?:number, thresholds?:{thetaHigh:number,thetaLow:number}}} [opts]
+ * @returns {Promise<{myNext:object|null, candidates:object[]}>}
+ */
+export async function findPeerCandidates(
+  userId,
+  pathSlug = null,
+  { maxCandidates = 5, thresholds = ZPD_THRESHOLDS } = {}
+) {
+  const myNext = await nextObjectiveInZPD(userId, pathSlug, thresholds);
+  if (!myNext) {
+    return { myNext: null, candidates: [] };
+  }
+
+  const myBloom = Number(myNext.bloom) || 3;
+  const cap = Math.min(Number(maxCandidates) || 5, 20);
+  const bloomLow = Math.max(1, myBloom - 1);
+  const bloomHigh = Math.min(6, myBloom + 1);
+
+  const driver = getNeo4jDriver();
+  const session = driver.session({
+    database: NEO4J_DATABASE,
+    defaultAccessMode: neo4j.session.READ,
+  });
+  try {
+    const pathFilter = `($pathSlug IS NULL
+            OR EXISTS {
+              MATCH (c:Curriculum {slug: $pathSlug})-[:HAS_SUBTOPIC]->(:SubTopic)-[:FULFILLS]->(otherLo)
+            }
+            OR EXISTS {
+              MATCH (c:Curriculum {slug: $pathSlug})-[:HAS_TOPIC]->(:Topic)-[:HAS_SUBTOPIC]->(:SubTopic)-[:FULFILLS]->(otherLo)
+            })`;
+
+    const result = await session.run(
+      `MATCH (otherSt:ObjectiveState)-[:FOR]->(otherLo:LearningObjective)
+       ${subsetMatch('otherLo')}
+       AND ${pathFilter}
+       AND otherSt.userId <> $userId
+       AND otherSt.mastery <= $thetaLow
+       AND otherSt.bloomsMaxReached >= $bloomLow
+       AND otherSt.bloomsMaxReached <= $bloomHigh
+       RETURN otherSt.userId AS userId,
+              otherLo.slug AS objectiveSlug,
+              coalesce(otherLo.blooms_index, 3) AS bloom,
+              otherSt.mastery AS mastery,
+              otherSt.mkoFor AS mkoFor
+       ORDER BY abs(coalesce(otherLo.blooms_index, 3) - $myBloom),
+                otherSt.mastery DESC
+       LIMIT $limit`, // fetch ~2× the cap so a post-filter on curricular distance still yields enough
+      {
+        userId: String(userId),
+        pathSlug: pathSlug || null,
+        thetaLow: thresholds.thetaLow,
+        bloomLow,
+        bloomHigh,
+        myBloom,
+        limit: cap * 2,
+      }
+    );
+
+    // When a path is requested, all overlapping candidates already share that
+    // path (same topic). Without it, assume cross-topic so a same-Bloom peer is
+    // still preferred but we don't overclaim curricular proximity.
+    const curricularDistance = pathSlug
+      ? curricularDistanceMetric('same-topic')
+      : curricularDistanceMetric('cross-topic');
+
+    const candidates = result.records
+      .map((r) => {
+        const peerBloom = toNumberSafe(r.get('bloom')) ?? myBloom;
+        const peerMastery = toNumberSafe(r.get('mastery')) ?? 0;
+        const mkoBonus = peerMastery >= thresholds.thetaHigh ? 1 : 0;
+        return {
+          userId: String(r.get('userId')),
+          displayName: null,
+          objectiveSlug: r.get('objectiveSlug'),
+          bloom: peerBloom,
+          mastery: peerMastery,
+          loMastery: peerMastery,
+          matchScore: peerMatchScore(myBloom, peerBloom, curricularDistance, mkoBonus),
+          mkoDirection: classifyMKODirection(0, peerMastery, thresholds.thetaHigh),
+        };
+      })
+      .sort((a, b) => b.matchScore - a.matchScore)
+      .slice(0, cap);
+
+    return {
+      myNext: {
+        slug: myNext.slug,
+        bloom: myBloom,
+      },
+      candidates,
+    };
+  } finally {
+    await session.close();
+  }
+}
