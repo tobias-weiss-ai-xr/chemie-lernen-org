@@ -95,7 +95,6 @@ async function persistAssessment({ userId, exerciseId, exercise, answer, gradeRe
 const rateLimitMap = new Map();
 const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
 const RATE_LIMIT_MAX = 60; // 60 requests per minute
-
 function checkRateLimit(userId) {
   const now = Date.now();
   const entry = rateLimitMap.get(userId) || { count: 0, windowStart: now };
@@ -117,6 +116,42 @@ function checkRateLimit(userId) {
   }
 
   return entry.count <= RATE_LIMIT_MAX;
+}
+
+// Enable auto-ingestion of graded-exercise mastery into the ZPD ObjectiveState
+// graph. Off by default; failures are logged, never surfaced to the caller.
+const ENABLE_MASTERY_AUTO_INGEST = process.env.ENABLE_MASTERY_AUTO_INGEST === 'true';
+
+/**
+ * Best-effort: after a graded exercise, fold the learner's graded-answer
+ * history into aggregateMastery and upsert the resolved ObjectiveState.
+ * Self-contained so a failure never breaks the grade response.
+ */
+async function maybeAutoIngestGrade(userId) {
+  if (!ENABLE_MASTERY_AUTO_INGEST) return;
+  const { aggregateMastery, mapTopicToObjectives } =
+    await import('../services/mastery-aggregator.js');
+  const { upsertObjectiveState } = await import('../services/zpd-engine.js');
+  const results = await getLearnerResults(userId, 50, 0);
+  const topics = new Set((results || []).map((r) => r.topic).filter(Boolean));
+  await Promise.all(
+    [...topics].map(async (t) => {
+      const slugs = await mapTopicToObjectives(t);
+      for (const slug of slugs) {
+        const mastery = aggregateMastery(userId, slug, {
+          quizResults: [],
+          fsrsCards: [],
+          gradedAnswers: results || [],
+        });
+        if (mastery && mastery.mastery != null) {
+          await upsertObjectiveState(userId, slug, {
+            mastery: mastery.mastery,
+            source: 'auto-ingest',
+          });
+        }
+      }
+    })
+  );
 }
 
 // ── POST /api/exercises/generate ──────────────────────────────────────
@@ -254,6 +289,14 @@ router.post('/api/exercises/grade', requireAuth, async (req, res) => {
       logger.warn(
         { err, message: err.message || String(err) },
         '[exercises] assessment persistence skipped'
+      );
+    });
+
+    // 4.1 Auto-ingestion hook (opt-in via ENABLE_MASTERY_AUTO_INGEST).
+    maybeAutoIngestGrade(String(req.user.id)).catch((err) => {
+      logger.warn(
+        { err, message: err.message || String(err) },
+        '[exercises] mastery auto-ingest skipped'
       );
     });
 

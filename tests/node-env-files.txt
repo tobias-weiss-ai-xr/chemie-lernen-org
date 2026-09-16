@@ -40,6 +40,7 @@ malformed-uri.test.mjs
 manifest.test.js
 mastery-aggregator-query.test.mjs
 mastery-aggregator.test.mjs
+mastery-auto-ingest.test.mjs
 modulhandbuch-api.test.js
 modulhandbuch-contrast.test.js
 modulhandbuch-import.test.js

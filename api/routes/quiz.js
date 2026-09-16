@@ -25,6 +25,7 @@ import {
   createFsrsCard,
   addQuizResult,
   getQuizResults,
+  getFsrsCards,
 } from '../auth-db.js';
 
 const logger = pino({
@@ -35,6 +36,45 @@ const logger = pino({
 });
 
 const router = Router();
+
+// Opt-in auto-ingestion of quiz results into the ZPD ObjectiveState graph
+// (formative-assessment 4.2). Failures are logged, never surfaced.
+const ENABLE_MASTERY_AUTO_INGEST = process.env.ENABLE_MASTERY_AUTO_INGEST === 'true';
+
+/**
+ * Fold the user's quiz results + FSRS cards into ObjectiveState mastery.
+ * Self-contained: lazy-imports the public aggregator/services so this route
+ * keeps no hard dependency and stays green when flags are off.
+ */
+async function maybeAutoIngestQuiz(userId) {
+  if (!ENABLE_MASTERY_AUTO_INGEST) return;
+  const { aggregateMastery, mapTopicToObjectives } =
+    await import('../services/mastery-aggregator.js');
+  const { upsertObjectiveState } = await import('../services/zpd-engine.js');
+  const quizResults = getQuizResults(userId) || [];
+  const fsrsCards = getFsrsCards(userId) || [];
+  const topics = new Set(
+    [...quizResults.map((r) => r.topic), ...fsrsCards.map((c) => c.topicId)].filter(Boolean)
+  );
+  await Promise.all(
+    [...topics].map(async (t) => {
+      const slugs = await mapTopicToObjectives(t);
+      for (const slug of slugs) {
+        const mastery = aggregateMastery(userId, slug, {
+          quizResults,
+          fsrsCards,
+          gradedAnswers: [],
+        });
+        if (mastery && mastery.mastery != null) {
+          await upsertObjectiveState(userId, slug, {
+            mastery: mastery.mastery,
+            source: 'auto-ingest',
+          });
+        }
+      }
+    })
+  );
+}
 
 // ── Quiz API ───────────────────────────────────────────────────
 
@@ -116,6 +156,15 @@ router.put('/api/quiz-results', async (req, res) => {
     if (!saveResult.ok) {
       logger.warn({ err: saveResult.error, message: '[quiz-api] Failed to save result' });
     }
+
+    // 4.2 Auto-ingestion hook (opt-in): fold this quiz result into the ZPD
+    // ObjectiveState mastery via aggregateMastery + mapTopicToObjectives.
+    maybeAutoIngestQuiz(req.user.id).catch((err) => {
+      logger.warn(
+        { err, message: err.message || String(err) },
+        '[quiz-api] mastery auto-ingest skipped'
+      );
+    });
 
     // ── Evidence-based loop: wrong answers → FSRS flashcards ──
     // Research (1,732 papers): spaced repetition + testing effect
