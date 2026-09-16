@@ -35,7 +35,7 @@ overlapScore = 1.0
 interface PeerCandidate {
   userId: string;
   displayName: string;
-  objectiveSlug: string;     // candidate's nextInZPD
+  objectiveSlug: string; // candidate's nextInZPD
   bloom: number;
   matchScore: number;
   mkoDirection: 'peer' | 'mko-for-you' | 'you-are-mko';
@@ -139,13 +139,13 @@ Returns the current user's peer collaboration context:
 
 ## Component wiring
 
-| Component                  | Role in R3                                    |
-| -------------------------- | --------------------------------------------- |
-| `zpd-engine.js`            | `findPeerCandidates()` + scoring function     |
-| `collab-engine.js` (core)  | `createSession()` with ZPD metadata           |
-| `api/routes/collab.js`     | `POST /api/collab/sessions/zpd-match`          |
-| `learning-paths` route     | `recommendedStrategy: "peer"` now actionable   |
-| `ObjectiveState` (Neo4j)   | read to compute overlap, no schema changes     |
+| Component                 | Role in R3                                   |
+| ------------------------- | -------------------------------------------- |
+| `zpd-engine.js`           | `findPeerCandidates()` + scoring function    |
+| `collab-engine.js` (core) | `createSession()` with ZPD metadata          |
+| `api/routes/collab.js`    | `POST /api/collab/sessions/zpd-match`        |
+| `learning-paths` route    | `recommendedStrategy: "peer"` now actionable |
+| `ObjectiveState` (Neo4j)  | read to compute overlap, no schema changes   |
 
 ## Privacy & safety
 

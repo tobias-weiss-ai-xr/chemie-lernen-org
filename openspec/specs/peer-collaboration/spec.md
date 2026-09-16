@@ -1,11 +1,16 @@
-# Spec: peer-collaboration
+# peer-collaboration Specification
 
-**Capability:** ZPD-matched peer grouping for collaborative learning
-**Owners:** Sisyphus
+## Purpose
 
----
+ZPD-matched peer grouping for collaborative learning. The Bloom × ZPD adaptive
+engine may recommend a `"peer"` strategy; this capability provides the backing
+implementation — finding learners whose current learning position overlaps a
+given user's Zone of Proximal Development (Vygotsky near-peer principle),
+ranking candidates by a composite match score, and optionally creating a
+collaboration session pre-populated with the ZPD context so the UI can show
+the learning rationale.
 
-## ADDED Requirements
+## Requirements
 
 ### Requirement: PC-1 — ZPD overlap peer matching
 
@@ -41,7 +46,7 @@ Peer candidates SHALL be ranked by a composite match score ∈ [0, 1] that
 combines Bloom proximity, curricular distance, and MKO qualification.
 
 - Score formula: `1.0 - 0.3 × |bloom_A - bloom_B| - 0.2 × curricularDistance
-  + 0.2 × mkoBonus`
+  - 0.2 × mkoBonus`
 - The MKO bonus is 0.2 when one learner's mastery of the other's next
   objective exceeds `θ_high`, otherwise 0.
 - Results SHALL be returned in descending match-score order, capped at
