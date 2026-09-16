@@ -15,6 +15,8 @@ import express from 'express';
 
 const mockCompleteObjective = vi.fn();
 const mockUpsert = vi.fn();
+const mockNextObjective = vi.fn();
+const mockRecommendedStrategy = vi.fn();
 
 vi.mock(
   '../api/auth.js',
@@ -29,8 +31,8 @@ vi.mock(
 vi.mock(
   '../api/services/zpd-engine.js',
   () => ({
-    nextObjectiveInZPD: vi.fn(),
-    recommendedStrategy: vi.fn(),
+    nextObjectiveInZPD: mockNextObjective,
+    recommendedStrategy: mockRecommendedStrategy,
     upsertObjectiveState: mockUpsert,
     ZPD_THRESHOLDS: { thetaHigh: 0.8, thetaLow: 0.6 },
     bloomIndex: (l) => (l >= 1 && l <= 6 ? l : 0),
@@ -171,5 +173,58 @@ describe('GET/POST /api/zpd/bloom-target (differentiation)', () => {
       body: JSON.stringify({}),
     });
     expect(res.status).toBe(400);
+  });
+});
+
+describe('GET /api/zpd/thresholds + threshold params (formative-assessment)', () => {
+  let server;
+  let baseURL;
+
+  afterEach(async () => {
+    if (server) await new Promise((resolve) => server.close(resolve));
+  });
+
+  test('GET /api/zpd/thresholds returns defaults without auth', async () => {
+    ({ server, baseURL } = createTestServer(null));
+    const res = await fetch(`${baseURL}/api/zpd/thresholds`);
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    expect(body.thetaHigh).toBe(0.8);
+    expect(body.thetaLow).toBe(0.6);
+  });
+
+  test('/next passes clamped thresholds + echoes them', async () => {
+    mockNextObjective.mockResolvedValue({ slug: SLUG, bloom: 3 });
+    mockRecommendedStrategy.mockReturnValue('scaffold');
+    ({ server, baseURL } = createTestServer({ id: 7 }));
+    const res = await fetch(`${baseURL}/api/zpd/next?thetaHigh=0.9&thetaLow=0.4`);
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    expect(mockNextObjective).toHaveBeenCalledWith(
+      7,
+      null,
+      { thetaHigh: 0.9, thetaLow: 0.4 },
+      null
+    );
+    expect(body.thresholds).toEqual({ thetaHigh: 0.9, thetaLow: 0.4 });
+  });
+
+  test('/next clamps out-of-range theta + keeps high >= low', async () => {
+    mockNextObjective.mockResolvedValue(null);
+    ({ server, baseURL } = createTestServer({ id: 7 }));
+    const res = await fetch(`${baseURL}/api/zpd/next?thetaHigh=9&thetaLow=0`);
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    // thetaHigh=9 invalid -> fallback 0.8; thetaLow=0 invalid -> fallback 0.6
+    expect(body.thresholds).toEqual({ thetaHigh: 0.8, thetaLow: 0.6 });
+  });
+
+  test('/next with no theta params falls back to defaults', async () => {
+    mockNextObjective.mockResolvedValue(null);
+    ({ server, baseURL } = createTestServer({ id: 7 }));
+    const res = await fetch(`${baseURL}/api/zpd/next`);
+    expect(res.status).toBe(200);
+    const body = await res.json();
+    expect(body.thresholds).toEqual({ thetaHigh: 0.8, thetaLow: 0.6 });
   });
 });

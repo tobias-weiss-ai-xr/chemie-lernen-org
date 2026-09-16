@@ -53,5 +53,5 @@
 
 ## 6. Spec sync
 
-- [ ] 6.1 Validate: `npx openspec validate zpd-deepdive-tech-integration`
+- [x] 6.1 Validate: `npx openspec validate zpd-deepdive-tech-integration`
       passes cleanly.

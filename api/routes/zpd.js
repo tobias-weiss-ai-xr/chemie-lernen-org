@@ -20,6 +20,41 @@ import { getBloomTarget, setBloomTarget } from '../services/bloom-target.js';
 const router = Router();
 
 /**
+ * Parse an optional theta query param, clamp to [0.1, 0.95], fall back to the
+ * given default when absent/invalid. Returns a number.
+ */
+function parseTheta(raw, fallback) {
+  if (raw == null || raw === '') return fallback;
+  const n = Number(raw);
+  if (!Number.isFinite(n) || n <= 0 || n >= 1) return fallback;
+  return Math.min(0.95, Math.max(0.1, n));
+}
+
+/**
+ * Build a thresholds object from optional query params.
+ * thetaHigh defaults to 0.8, thetaLow to 0.6; clamps ensure high >= low.
+ */
+function resolveThresholds(query = {}) {
+  const thetaHigh = parseTheta(query.thetaHigh, ZPD_THRESHOLDS.thetaHigh);
+  const thetaLow = parseTheta(query.thetaLow, ZPD_THRESHOLDS.thetaLow);
+  return {
+    thetaHigh: Math.max(thetaHigh, thetaLow),
+    thetaLow: Math.min(thetaHigh, thetaLow),
+  };
+}
+
+/**
+ * GET /api/zpd/thresholds
+ * Public: returns the current mastery thresholds (no auth).
+ */
+router.get('/api/zpd/thresholds', async (req, res) => {
+  return res.json({
+    thetaHigh: ZPD_THRESHOLDS.thetaHigh,
+    thetaLow: ZPD_THRESHOLDS.thetaLow,
+  });
+});
+
+/**
  * GET /api/zpd/bloom-target
  * Returns the current user's per-learner Bloom ceiling (1–6).
  */
@@ -64,22 +99,26 @@ router.get('/api/zpd/next', requireAuth, async (req, res) => {
       rawTarget != null && typeof rawTarget === 'string' && rawTarget.trim() !== ''
         ? Number(rawTarget)
         : null;
-    const next = await nextObjectiveInZPD(req.user.id, req.query.path || null, null, target);
+    const thresholds = resolveThresholds(req.query);
+    const effectiveTarget = target != null ? target : getBloomTarget(req.user.id);
+    const next = await nextObjectiveInZPD(req.user.id, req.query.path || null, thresholds, target);
     if (!next) {
       return res.json({
         inZPD: false,
         next: null,
         recommendedStrategy: null,
-        targetBloomIndex: target != null ? target : getBloomTarget(req.user.id),
+        targetBloomIndex: effectiveTarget,
+        thresholds,
       });
     }
     return res.json({
       inZPD: true,
       next,
       recommendedStrategy: recommendedStrategy(next, {
-        targetBloomIndex: target != null ? target : getBloomTarget(req.user.id),
+        targetBloomIndex: effectiveTarget,
       }),
-      targetBloomIndex: target != null ? target : getBloomTarget(req.user.id),
+      targetBloomIndex: effectiveTarget,
+      thresholds,
     });
   } catch (err) {
     return res.status(500).json({ error: 'nextInZPD failed', detail: err.message });
