@@ -24,6 +24,7 @@ import {
   getBloomTarget as authGetBloomTarget,
   setBloomTarget as authSetBloomTarget,
 } from './bloom-target.js';
+import { resolveTool } from './tool-router.js';
 
 export const ZPD_THRESHOLDS = { thetaHigh: 0.8, thetaLow: 0.6 };
 
@@ -205,17 +206,28 @@ export async function nextObjectiveInZPD(
  * (the activator suggests raising the target).
  *
  * @param {{loMastery?:number, prereqAvg?:number, bloom?:number}|null} next
- * @param {{hasPeer?:boolean, targetBloomIndex?:number}} [opts]
+ * @param {{hasPeer?:boolean, targetBloomIndex?:number, objectiveTags?:string[]}} [opts]
  * @returns {'scaffold'|'peer'|'differentiate'|'tool'|'assess'|null}
  */
-export function recommendedStrategy(next, { hasPeer = false, targetBloomIndex = null } = {}) {
+export function recommendedStrategy(
+  next,
+  { hasPeer = false, targetBloomIndex = null, objectiveTags } = {}
+) {
   if (!next) return null;
   const loMastery = next.loMastery ?? 0;
   const prereqAvg = next.prereqAvg ?? 1;
+  const bloom = next.bloom ?? null;
+  // Tech integration: a concrete tool match beats the generic default. When
+  // resolver returns a tool, prefer 'tool'; otherwise fall through to the
+  // differentiation default (safest fallback per REQ-TTR-2/TTR-3).
+  if (Array.isArray(objectiveTags) && objectiveTags.length > 0 && bloom != null) {
+    if (resolveTool(bloom, objectiveTags)) {
+      return 'tool';
+    }
+  }
   // Differentiation: learner is already operating at (or above) their Bloom
   // ceiling → suggest advancing the ceiling rather than piling on more of the
   // same depth.
-  const bloom = next.bloom ?? null;
   if (bloom != null && targetBloomIndex != null && bloom >= targetBloomIndex) {
     return 'differentiate';
   }
@@ -225,6 +237,19 @@ export function recommendedStrategy(next, { hasPeer = false, targetBloomIndex = 
   if (loMastery > 0.6 && loMastery < 0.8) return 'assess';
   if (hasPeer) return 'peer';
   return 'differentiate';
+}
+
+/**
+ * Produce the `toolRecommendation` sub-object for a ZPD next objective when
+ * the strategy resolves to `tool`. Returns null when no tool matches.
+ *
+ * @param {{bloom?:number}|null} next
+ * @param {string[]|undefined} [objectiveTags]
+ * @returns {{toolId:string, toolType:string, launchUrl:string, rationale:string}|null}
+ */
+export function recommendedTool(next, objectiveTags) {
+  if (!next || next.bloom == null) return null;
+  return resolveTool(next.bloom, objectiveTags);
 }
 
 /**

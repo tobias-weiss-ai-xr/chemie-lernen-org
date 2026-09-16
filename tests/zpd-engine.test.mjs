@@ -2,7 +2,7 @@
  * Unit tests for the Bloom × ZPD engine — pure logic only (no Neo4j).
  */
 
-import { bloomIndex, recommendedStrategy } from '../api/services/zpd-engine.js';
+import { bloomIndex, recommendedStrategy, recommendedTool } from '../api/services/zpd-engine.js';
 
 describe('bloomIndex', () => {
   it('maps level strings to 1–6', () => {
@@ -75,5 +75,61 @@ describe('recommendedStrategy', () => {
     expect(recommendedStrategy({ loMastery: 0.5, prereqAvg: 0.9 }, { targetBloomIndex: 3 })).toBe(
       'differentiate'
     );
+  });
+});
+
+describe('recommendedStrategy — tool integration (zpd-deepdive-tech-integration)', () => {
+  it('recommends tool for spatial objective with matching Bloom', () => {
+    expect(
+      recommendedStrategy({ loMastery: 0.3, prereqAvg: 0.9, bloom: 3 }, { objectiveTags: ['spatial'] })
+    ).toBe('tool');
+  });
+
+  it('does not recommend tool when objectiveTags is absent (backward compatible)', () => {
+    expect(recommendedStrategy({ loMastery: 0.3, prereqAvg: 0.9, bloom: 3 })).toBe('differentiate');
+  });
+
+  it('does not recommend tool when no objectiveTags array but bloom present', () => {
+    expect(
+      recommendedStrategy({ loMastery: 0.3, prereqAvg: 0.9, bloom: 3 }, { objectiveTags: [] })
+    ).toBe('differentiate');
+  });
+
+  it('falls through to differentiate when tags do not resolve a tool', () => {
+    expect(
+      recommendedStrategy(
+        { loMastery: 0.3, prereqAvg: 0.9, bloom: 1 },
+        { objectiveTags: ['quantitative'] }
+      )
+    ).toBe('differentiate');
+  });
+
+  it('tool wins even when peer is available (tech beats collaborative default)', () => {
+    expect(
+      recommendedStrategy(
+        { loMastery: 0.3, prereqAvg: 0.9, bloom: 3 },
+        { hasPeer: true, objectiveTags: ['spatial'] }
+      )
+    ).toBe('tool');
+  });
+});
+
+describe('recommendedTool', () => {
+  it('returns null when next is null or bloom is missing', () => {
+    expect(recommendedTool(null, ['spatial'])).toBeNull();
+    expect(recommendedTool({ loMastery: 0.3 }, ['spatial'])).toBeNull();
+  });
+
+  it('returns a tool recommendation for a matching objective', () => {
+    const rec = recommendedTool({ bloom: 2 }, ['spatial']);
+    expect(rec).not.toBeNull();
+    expect(rec.toolType).toBe('visualization');
+    expect(rec).toHaveProperty('toolId');
+    expect(rec).toHaveProperty('launchUrl');
+    expect(rec).toHaveProperty('rationale');
+  });
+
+  it('returns null when no tool matches', () => {
+    expect(recommendedTool({ bloom: 1 }, ['quantitative'])).toBeNull();
   });
 });

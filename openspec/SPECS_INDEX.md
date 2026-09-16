@@ -34,7 +34,7 @@ Last updated: 2026-09-04
 | zpd-deepdive-differentiation      | 36/43 | in-progress                                                      |
 | zpd-deepdive-formative-assessment | 0/19  | proposed                                                         |
 | zpd-deepdive-peer-collaboration   | 0/13  | proposed                                                         |
-| zpd-deepdive-tech-integration     | 0/11  | proposed                                                         |
+| zpd-deepdive-tech-integration     | 10/11 | in-progress                                                      |
 | per-element-learning-rooms        | 22/23 | in-progress (3.3 a11y: hello-webxr-master nicht auf diesem Host) |
 | hubs-scene-templates              | 19/20 | in-progress (visual pass = human review)                         |
 | zpd-deepdive-scaffolding          | 6/7   | in-progress                                                      |

@@ -20,7 +20,12 @@ import { getGamification } from '../auth-db.js';
 import * as learningEngine from '../learning-engine.js';
 import { loadLearningPathsJson } from '../services/content.js';
 import { sessionStore } from '../services/session.js';
-import { nextObjectiveInZPD, recommendedStrategy } from '../services/zpd-engine.js';
+import {
+  nextObjectiveInZPD,
+  recommendedStrategy,
+  recommendedTool,
+} from '../services/zpd-engine.js';
+import { inferObjectiveTags } from '../services/tool-router.js';
 import { getBloomTarget } from '../services/bloom-target.js';
 
 // UXF-034: Query-Params koerzieren — Express macht ?x=a&x=b zu Arrays,
@@ -322,13 +327,19 @@ router.get('/api/learning-paths/:slug', async (req, res) => {
         const effectiveTarget = getBloomTarget(req.user.id);
         const next = await nextObjectiveInZPD(req.user.id, req.params.slug, null, effectiveTarget);
         tree.nextInZPD = next
-          ? {
-              next,
-              recommendedStrategy: recommendedStrategy(next, {
+          ? (() => {
+              const objTags = inferObjectiveTags(next.description, next.slug);
+              const strat = recommendedStrategy(next, {
                 targetBloomIndex: effectiveTarget,
-              }),
-              bloomTarget: effectiveTarget,
-            }
+                objectiveTags: objTags,
+              });
+              return {
+                next,
+                recommendedStrategy: strat,
+                bloomTarget: effectiveTarget,
+                ...(strat === 'tool' ? { toolRecommendation: recommendedTool(next, objTags) } : {}),
+              };
+            })()
           : null;
         tree.targetBloomIndex = effectiveTarget;
       } catch (zpdErr) {
@@ -369,12 +380,17 @@ router.get('/api/learning-paths/:slug/next', requireAuth, async (req, res) => {
         bloomTarget: effectiveTarget,
       });
     }
-    const strat = recommendedStrategy(next, { targetBloomIndex: effectiveTarget });
+    const objTags = inferObjectiveTags(next.description, next.slug);
+    const strat = recommendedStrategy(next, {
+      targetBloomIndex: effectiveTarget,
+      objectiveTags: objTags,
+    });
     return res.json({
       inZPD: true,
       next,
       recommendedStrategy: strat,
       bloomTarget: effectiveTarget,
+      ...(strat === 'tool' ? { toolRecommendation: recommendedTool(next, objTags) } : {}),
     });
   } catch (err) {
     logger.error({ err }, '[learning-paths] next error');

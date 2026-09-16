@@ -103,10 +103,12 @@ vi.mock('../scripts/_neo4j-subset-filter.mjs', () => ({
 
 const mockNextObjectiveInZPD = vi.fn();
 const mockRecommendedStrategy = vi.fn();
+const mockRecommendedTool = vi.fn();
 
 vi.mock('../api/services/zpd-engine.js', () => ({
   nextObjectiveInZPD: mockNextObjectiveInZPD,
   recommendedStrategy: mockRecommendedStrategy,
+  recommendedTool: mockRecommendedTool,
   ZPD_THRESHOLDS: { thetaHigh: 0.8, thetaLow: 0.6 },
 }));
 
@@ -248,6 +250,7 @@ describe('GET /api/learning-paths/:slug/next', () => {
     expect(mockNextObjectiveInZPD).toHaveBeenCalledWith('user-456', pathSlug);
     expect(mockRecommendedStrategy).toHaveBeenCalledWith(mockNext, {
       targetBloomIndex: expect.any(Number),
+      objectiveTags: expect.any(Array),
     });
   });
 

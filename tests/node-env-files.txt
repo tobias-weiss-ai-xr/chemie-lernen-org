@@ -75,10 +75,13 @@ teacher-analytics.test.js
 theme-overrides-patch.test.mjs
 theme-overrides.integration.test.mjs
 theme-overrides.test.mjs
+tools-route.test.mjs
+tool-router.test.mjs
 verduennungsrechner.test.js
 zpd-engine-query.test.mjs
 bloom-target-authdb.test.mjs
 gamification-profile-bloom.test.mjs
+zpd-engine-tool-strategy.test.mjs
 zpd-engine.test.mjs
 zpd-route.test.mjs
 contrast-rendered.test.mjs
