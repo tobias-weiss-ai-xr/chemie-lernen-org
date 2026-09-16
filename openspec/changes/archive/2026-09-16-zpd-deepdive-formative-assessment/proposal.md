@@ -21,7 +21,7 @@ ingesting mastery signals. However, three critical gaps remain:
    band is wrong — objectives they partially know are treated as
    completely unknown, producing suboptimal recommendations.
 
-3. **No threshold calibration.** θ\_high = 0.8 and θ\_low = 0.6 are hard-coded
+3. **No threshold calibration.** θ_high = 0.8 and θ_low = 0.6 are hard-coded
    starting values. Real learners may need per-cohort or per-curriculum
    adjustment. There is no endpoint to read or override thresholds, and
    no instrumentation to evaluate whether the defaults produce good ZPD

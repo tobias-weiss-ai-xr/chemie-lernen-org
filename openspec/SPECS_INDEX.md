@@ -32,7 +32,7 @@ Last updated: 2026-09-04
 | --------------------------------- | ----- | ----------------------------------------------------------------- |
 | roadmap-next-epics                | 6/29  | roadmap (hubs-Epics S40/S45/S46 hubs-Tasks deferriert 2026-09-16) |
 | zpd-deepdive-differentiation      | 36/43 | in-progress                                                       |
-| zpd-deepdive-formative-assessment | 0/19  | proposed                                                          |
+| zpd-deepdive-formative-assessment | 19/19 | ✓ Complete (archived 2026-09-16)                                  |
 | zpd-deepdive-peer-collaboration   | 0/13  | proposed                                                          |
 | zpd-deepdive-tech-integration     | 11/11 | ✓ Complete (validated 2026-09-16)                                 |
 | per-element-learning-rooms        | 22/23 | **deferred 2026-09-16** (komplett Hubs/hello-webxr)               |

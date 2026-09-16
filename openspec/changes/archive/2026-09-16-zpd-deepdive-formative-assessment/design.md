@@ -13,11 +13,11 @@ signals.
 
 ### Signal sources
 
-| Source             | Where stored                     | Evidence per (user, LO)                         |
-| ------------------ | -------------------------------- | ----------------------------------------------- |
-| Auto-grader        | Neo4j `(:GradedAnswer)` + session | `{correct, score, difficulty, gradedBy, loSlug}` |
-| Quiz               | users.json `quizResults[]`        | `{topic, score, total, percentage, timestamp}` |
-| FSRS               | users.json `fsrsCards[]`          | `{topicId, stability, difficulty, reps, due}` |
+| Source      | Where stored                      | Evidence per (user, LO)                          |
+| ----------- | --------------------------------- | ------------------------------------------------ |
+| Auto-grader | Neo4j `(:GradedAnswer)` + session | `{correct, score, difficulty, gradedBy, loSlug}` |
+| Quiz        | users.json `quizResults[]`        | `{topic, score, total, percentage, timestamp}`   |
+| FSRS        | users.json `fsrsCards[]`          | `{topicId, stability, difficulty, reps, due}`    |
 
 Each source maps to a **local signal** `m_i ∈ [0,1]` for a given objective:
 
@@ -40,7 +40,7 @@ Default weights (reflecting assessment quality and Bloom alignment):
 | Source      | Weight | Rationale                                                        |
 | ----------- | ------ | ---------------------------------------------------------------- |
 | auto-grader | 0.40   | Structured, Bloom-levelled, deterministic or AI-graded           |
-| quiz        | 0.35   | Topic-level percentage, well-tested, but not LO-specific        |
+| quiz        | 0.35   | Topic-level percentage, well-tested, but not LO-specific         |
 | FSRS        | 0.25   | Spaced repetition evidence; high stability → high mastery signal |
 
 Weights are configurable via `MASTERY_WEIGHTS` env vars:
@@ -57,6 +57,7 @@ When a source has no data for the (user, LO) pair:
 - If **all three** are missing, return `null` (no evidence → cold-start).
 
 Example: auto-grader = 0.7, quiz = null, FSRS = 0.5:
+
 ```
 effective: w_ag = 0.4/(0.4+0.25) = 0.615, w_fsrs = 0.25/(0.4+0.25) = 0.385
 mastery = 0.615 * 0.7 + 0.385 * 0.5 = 0.623
@@ -74,7 +75,7 @@ records. If zero, it triggers a cold-start resolution before the ZPD query:
    Neo4j (Topic → SubTopic → FULFILLS → LearningObjective).
 3. Compute aggregated mastery per objective using the mastery aggregator.
 4. Upsert `:ObjectiveState` for each objective with evidence (`source:
-   'cold-start'`).
+'cold-start'`).
 5. Proceed with the normal `nextObjectiveInZPD` query.
 
 ### Performance constraint

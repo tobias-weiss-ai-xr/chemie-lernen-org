@@ -137,6 +137,7 @@ successful exercise grading and quiz result submission when the
 
 Failures in auto-ingestion MUST be logged but MUST NOT surface errors
 to the user or block the grading/result response.
+
 - The upsert source SHALL be `'auto-grader'` for exercise grades and
   `'quiz'` for quiz results.
 
