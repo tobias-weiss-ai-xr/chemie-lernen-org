@@ -300,3 +300,23 @@ export async function upsertObjectiveState(
     await session.close();
   }
 }
+
+/**
+ * Count the number of :ObjectiveState records for a user.
+ * Used by cold-start detection (formative-assessment 2.1): if a user has zero
+ * objective states, the route layer can seed them from historical signals.
+ */
+export async function countObjectiveStates(userId) {
+  const driver = getNeo4jDriver();
+  const session = driver.session({ database: NEO4J_DATABASE });
+  try {
+    const result = await session.run(
+      `MATCH (s:ObjectiveState {userId: $userId})
+       RETURN count(s) AS total`,
+      { userId: String(userId) }
+    );
+    return toNumberSafe(result.records[0]?.get('total')) ?? 0;
+  } finally {
+    await session.close();
+  }
+}

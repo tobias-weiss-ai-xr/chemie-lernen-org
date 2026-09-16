@@ -33,11 +33,24 @@ function envWeight(name, fallback) {
 
 /** Read weights from env (with `process` polyfill-friendly guard for tests). */
 export function loadWeights() {
-  return {
-    autoGrader: envWeight('MASTERY_WEIGHT_AUTOGRADER', 0.4),
-    quiz: envWeight('MASTERY_WEIGHT_QUIZ', 0.35),
-    fsrs: envWeight('MASTERY_WEIGHT_FSRS', 0.25),
-  };
+  let autoGrader = envWeight('MASTERY_WEIGHT_AUTOGRADER', 0.4);
+  let quiz = envWeight('MASTERY_WEIGHT_QUIZ', 0.35);
+  let fsrs = envWeight('MASTERY_WEIGHT_FSRS', 0.25);
+  // Validate: any negative weight is invalid -> fall back to defaults.
+  if (autoGrader < 0 || quiz < 0 || fsrs < 0) {
+    autoGrader = 0.4;
+    quiz = 0.35;
+    fsrs = 0.25;
+  }
+  // Validate sum <= 1.0: if it exceeds 1.0, normalise back to exactly 1.0 so
+  // the weighted average never over-weights a single source past 100%.
+  const sum = autoGrader + quiz + fsrs;
+  if (Number.isFinite(sum) && sum > 1.0 && sum > 0) {
+    autoGrader /= sum;
+    quiz /= sum;
+    fsrs /= sum;
+  }
+  return { autoGrader, quiz, fsrs };
 }
 
 /**

@@ -17,6 +17,11 @@ const mockCompleteObjective = vi.fn();
 const mockUpsert = vi.fn();
 const mockNextObjective = vi.fn();
 const mockRecommendedStrategy = vi.fn();
+const mockCountObjectiveStates = vi.fn();
+const mockGetQuizResults = vi.fn();
+const mockGetFsrsCards = vi.fn();
+const mockAggregateMastery = vi.fn();
+const mockMapTopicToObjectives = vi.fn();
 
 vi.mock(
   '../api/auth.js',
@@ -34,6 +39,7 @@ vi.mock(
     nextObjectiveInZPD: mockNextObjective,
     recommendedStrategy: mockRecommendedStrategy,
     upsertObjectiveState: mockUpsert,
+    countObjectiveStates: mockCountObjectiveStates,
     ZPD_THRESHOLDS: { thetaHigh: 0.8, thetaLow: 0.6 },
     bloomIndex: (l) => (l >= 1 && l <= 6 ? l : 0),
   })
@@ -43,8 +49,18 @@ vi.mock(
   '../api/auth-db.js',
   () => ({
     completeObjective: mockCompleteObjective,
+    getQuizResults: mockGetQuizResults,
+    getFsrsCards: mockGetFsrsCards,
     getBloomTarget: () => 6,
     setBloomTarget: () => ({ ok: true, targetBloomIndex: 6 }),
+  })
+);
+
+vi.mock(
+  '../api/services/mastery-aggregator.js',
+  () => ({
+    aggregateMastery: mockAggregateMastery,
+    mapTopicToObjectives: mockMapTopicToObjectives,
   })
 );
 
@@ -86,7 +102,17 @@ describe('POST /api/zpd/mastery → completeObjective wiring', () => {
   beforeEach(() => {
     mockCompleteObjective.mockClear();
     mockUpsert.mockReset();
+    mockNextObjective.mockReset();
+    mockRecommendedStrategy.mockReset();
+    mockCountObjectiveStates.mockReset();
+    mockGetQuizResults.mockReset();
+    mockGetFsrsCards.mockReset();
+    mockAggregateMastery.mockReset();
+    mockMapTopicToObjectives.mockReset();
     mockUpsert.mockResolvedValue({ mastery: 0.9, bloomsMaxReached: 3 });
+    mockCountObjectiveStates.mockResolvedValue(10); // >0 => no cold-start
+    mockGetQuizResults.mockReturnValue([]);
+    mockGetFsrsCards.mockReturnValue([]);
   });
 
   afterEach(async () => {
@@ -184,6 +210,17 @@ describe('GET /api/zpd/thresholds + threshold params (formative-assessment)', ()
     if (server) await new Promise((resolve) => server.close(resolve));
   });
 
+  beforeEach(() => {
+    mockUpsert.mockReset();
+    mockNextObjective.mockReset();
+    mockRecommendedStrategy.mockReset();
+    mockAggregateMastery.mockReset();
+    mockMapTopicToObjectives.mockReset();
+    mockCountObjectiveStates.mockResolvedValue(10); // >0 => no cold-start
+    mockGetQuizResults.mockReturnValue([]);
+    mockGetFsrsCards.mockReturnValue([]);
+  });
+
   test('GET /api/zpd/thresholds returns defaults without auth', async () => {
     ({ server, baseURL } = createTestServer(null));
     const res = await fetch(`${baseURL}/api/zpd/thresholds`);
@@ -226,5 +263,91 @@ describe('GET /api/zpd/thresholds + threshold params (formative-assessment)', ()
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body.thresholds).toEqual({ thetaHigh: 0.8, thetaLow: 0.6 });
+  });
+
+  test('/next triggers no cold-start when the user already has states', async () => {
+    mockCountObjectiveStates.mockResolvedValue(5);
+    mockNextObjective.mockResolvedValue(null);
+    mockGetQuizResults.mockReturnValue([{ topic: 'Stoffe', percentage: 80 }]);
+    ({ server, baseURL } = createTestServer({ id: 7 }));
+    await fetch(`${baseURL}/api/zpd/next`);
+    expect(mockMapTopicToObjectives).not.toHaveBeenCalled();
+    expect(mockUpsert).not.toHaveBeenCalled();
+  });
+});
+
+describe('cold-start seeding (formative-assessment 2.2/2.3)', () => {
+  let server;
+  let baseURL;
+
+  beforeEach(() => {
+    // Isolate call counts from prior describes / tests.
+    mockUpsert.mockReset();
+    mockGetQuizResults.mockReset();
+    mockGetFsrsCards.mockReset();
+    mockMapTopicToObjectives.mockReset();
+    mockAggregateMastery.mockReset();
+    mockNextObjective.mockReset();
+  });
+
+  afterEach(async () => {
+    if (server) await new Promise((resolve) => server.close(resolve));
+  });
+
+  test('seeds ObjectiveState from quiz topics via mapTopicToObjectives', async () => {
+    mockCountObjectiveStates.mockResolvedValue(0); // no states -> cold-start
+    mockGetQuizResults.mockReturnValue([
+      { topic: 'Stoffe', percentage: 60 },
+      { topic: 'Stoffe', percentage: 90 },
+    ]);
+    mockGetFsrsCards.mockReturnValue([]);
+    mockMapTopicToObjectives.mockResolvedValue(['lo-1']);
+    mockAggregateMastery.mockReturnValue({ mastery: 0.75, sources: ['quiz'] });
+    mockUpsert.mockResolvedValue({ mastery: 0.75, bloomsMaxReached: 3 });
+    mockNextObjective.mockResolvedValue(null);
+
+    ({ server, baseURL } = createTestServer({ id: 7 }));
+    const res = await fetch(`${baseURL}/api/zpd/next`);
+    expect(res.status).toBe(200);
+
+    // dedicated to the distinct topic once
+    expect(mockMapTopicToObjectives).toHaveBeenCalledTimes(1);
+    expect(mockMapTopicToObjectives).toHaveBeenCalledWith('Stoffe');
+    // aggregate called once per resolved LO slug
+    expect(mockAggregateMastery).toHaveBeenCalled();
+    expect(mockUpsert).toHaveBeenCalledTimes(1);
+    expect(mockUpsert).toHaveBeenCalledWith(7, 'lo-1', {
+      mastery: 0.75,
+      source: 'cold-start',
+    });
+  });
+
+  test('runs cold-start at most once per process+userId (2.3 cache)', async () => {
+    mockCountObjectiveStates.mockResolvedValue(0);
+    mockGetQuizResults.mockReturnValue([{ topic: 'Alkane', percentage: 70 }]);
+    mockGetFsrsCards.mockReturnValue([]);
+    mockMapTopicToObjectives.mockResolvedValue(['lo-x']);
+    mockAggregateMastery.mockReturnValue({ mastery: 0.7, sources: ['quiz'] });
+    mockUpsert.mockResolvedValue({ mastery: 0.7, bloomsMaxReached: 3 });
+    mockNextObjective.mockResolvedValue(null);
+
+    ({ server, baseURL } = createTestServer({ id: 8 }));
+    await fetch(`${baseURL}/api/zpd/next`);
+    await fetch(`${baseURL}/api/zpd/next`);
+
+    // First request sets the cache; the second short-circuits.
+    expect(mockUpsert).toHaveBeenCalledTimes(1);
+  });
+
+  test('cold-start failures are swallowed (request still 200)', async () => {
+    mockCountObjectiveStates.mockResolvedValue(0);
+    mockGetQuizResults.mockReturnValue([{ topic: 'Stoffe', percentage: 80 }]);
+    mockGetFsrsCards.mockReturnValue([]);
+    mockMapTopicToObjectives.mockRejectedValue(new Error('neo4j down'));
+    mockNextObjective.mockResolvedValue(null);
+
+    ({ server, baseURL } = createTestServer({ id: 9 }));
+    const res = await fetch(`${baseURL}/api/zpd/next`);
+    expect(res.status).toBe(200);
   });
 });

@@ -40,6 +40,20 @@ describe('loadWeights', () => {
     process.env.MASTERY_WEIGHT_AUTOGRADER = 'nonsense';
     expect(loadWeights().autoGrader).toBe(0.4);
   });
+
+  test('normalises weights when sum exceeds 1.0 (1.4 sum<=1.0 guard)', () => {
+    process.env.MASTERY_WEIGHT_AUTOGRADER = '0.6';
+    process.env.MASTERY_WEIGHT_QUIZ = '0.6';
+    process.env.MASTERY_WEIGHT_FSRS = '0.6'; // sum 1.8
+    const w = loadWeights();
+    const sum = w.autoGrader + w.quiz + w.fsrs;
+    expect(sum).toBeCloseTo(1);
+  });
+
+  test('negative env weight falls back to defaults', () => {
+    process.env.MASTERY_WEIGHT_FSRS = '-0.1';
+    expect(loadWeights()).toEqual(BASE);
+  });
 });
 
 describe('quizSignal', () => {

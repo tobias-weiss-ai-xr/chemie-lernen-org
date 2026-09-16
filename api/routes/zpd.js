@@ -11,10 +11,12 @@ import {
   nextObjectiveInZPD,
   recommendedStrategy,
   upsertObjectiveState,
+  countObjectiveStates,
   ZPD_THRESHOLDS,
   bloomIndex,
 } from '../services/zpd-engine.js';
-import { completeObjective } from '../auth-db.js';
+import { completeObjective, getFsrsCards, getQuizResults } from '../auth-db.js';
+import { aggregateMastery, mapTopicToObjectives } from '../services/mastery-aggregator.js';
 import { getBloomTarget, setBloomTarget } from '../services/bloom-target.js';
 
 const router = Router();
@@ -41,6 +43,75 @@ function resolveThresholds(query = {}) {
     thetaHigh: Math.max(thetaHigh, thetaLow),
     thetaLow: Math.min(thetaHigh, thetaLow),
   };
+}
+
+// Per-session cold-start guard: userId -> timestamp (ms). Runs at most once per
+// server process per userId (formative-assessment 2.3). TTL 10 minutes.
+const coldStartRanAt = new Map();
+const COLD_START_TTL_MS = 10 * 60 * 1000;
+
+/**
+ * Seed :ObjectiveState records from historical signals the first time a user
+ * hits /api/zpd/next with zero objective states. Idempotent + guarded.
+ * Failures are logged and swallowed — cold-start must never break the request.
+ */
+async function ensureColdStart(userId) {
+  const now = Date.now();
+  const last = coldStartRanAt.get(userId);
+  if (last != null && now - last < COLD_START_TTL_MS) return;
+
+  try {
+    const states = await countObjectiveStates(userId);
+    if (states > 0) return; // already has evidence -> nothing to seed
+
+    // First contact with zero states: record we are seeding now so this runs
+    // at most once per process+userId within the TTL (formative 2.3).
+    coldStartRanAt.set(userId, now);
+
+    const quizResults = getQuizResults(userId) || [];
+    const fsrsCards = getFsrsCards(userId) || [];
+
+    // Group quiz rows by topic, remember distinct topics for LO mapping.
+    const topics = new Set();
+    for (const q of quizResults) {
+      if (q && q.topic) topics.add(q.topic);
+    }
+    for (const c of fsrsCards) {
+      if (c && c.topicId) topics.add(c.topicId);
+    }
+
+    // Resolve each distinct topic once to its LO slugs (2.4 batching: one query
+    // per topic instead of per quiz row).
+    const topicSlugs = new Map(); // topic -> slug[]
+    await Promise.all(
+      [...topics].map(async (t) => {
+        topicSlugs.set(t, await mapTopicToObjectives(t));
+      })
+    );
+
+    let upserts = 0;
+    for (const [, slugs] of topicSlugs) {
+      for (const slug of slugs) {
+        const mastery = aggregateMastery(userId, slug, {
+          quizResults,
+          fsrsCards,
+          gradedAnswers: [],
+        });
+        if (mastery && mastery.mastery != null) {
+          await upsertObjectiveState(userId, slug, {
+            mastery: mastery.mastery,
+            source: 'cold-start',
+          });
+          upserts += 1;
+        }
+      }
+    }
+    if (upserts > 0) {
+      console.debug(`[zpd] cold-start seeded ${upserts} objective states for user ${userId}`);
+    }
+  } catch (err) {
+    console.error(`[zpd] cold-start failed for user ${userId}:`, err.message);
+  }
 }
 
 /**
@@ -101,6 +172,8 @@ router.get('/api/zpd/next', requireAuth, async (req, res) => {
         : null;
     const thresholds = resolveThresholds(req.query);
     const effectiveTarget = target != null ? target : getBloomTarget(req.user.id);
+    // 2.1/2.2: seed ObjectiveState from historical signals on first contact.
+    await ensureColdStart(req.user.id);
     const next = await nextObjectiveInZPD(req.user.id, req.query.path || null, thresholds, target);
     if (!next) {
       return res.json({
