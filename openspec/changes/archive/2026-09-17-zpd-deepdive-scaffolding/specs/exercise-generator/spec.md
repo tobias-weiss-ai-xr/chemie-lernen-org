@@ -40,14 +40,14 @@ Each staircase step SHALL carry a `hintType` that downstream LLM prompt
 templates (in the private feedback-engine) use to select the appropriate
 prompt strategy.
 
-| Bloom Index | Level     | hintType                |
-| ----------- | --------- | ----------------------- |
-| 1           | remember  | `direct-recall`         |
-| 2           | understand| `analogy`               |
-| 3           | apply     | `worked-example`        |
-| 4           | analyze   | `socratic-question`     |
-| 5           | evaluate  | `compare-contrast`      |
-| 6           | create    | `open-ended-challenge`  |
+| Bloom Index | Level      | hintType               |
+| ----------- | ---------- | ---------------------- |
+| 1           | remember   | `direct-recall`        |
+| 2           | understand | `analogy`              |
+| 3           | apply      | `worked-example`       |
+| 4           | analyze    | `socratic-question`    |
+| 5           | evaluate   | `compare-contrast`     |
+| 6           | create     | `open-ended-challenge` |
 
 #### Scenario: Hint type selects prompt strategy
 

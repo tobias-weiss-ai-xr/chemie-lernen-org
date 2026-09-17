@@ -211,3 +211,129 @@ to the user or block the grading/result response.
 - **WHEN** `ENABLE_MASTERY_AUTO_INGEST=false` (or unset)
 - **AND** a user submits `POST /api/exercises/grade` successfully
 - **THEN** no mastery upsert occurs
+
+### Requirement: LP-SCAFFOLD-1 — Scaffolding hints endpoint
+
+The system SHALL provide `GET /api/scaffolding/hints` (auth required) that
+returns a Bloom-staircase scaffolding plan for a given learning objective.
+
+#### Scenario: Retrieve scaffolding hints for an objective
+
+- **WHEN** an authenticated user calls
+  `GET /api/scaffolding/hints?objectiveSlug=stoffe-teilchen-lo-3`
+- **THEN** the response is 200 with the scaffolding plan:
+  `{objectiveSlug, targetBloom, learnerBloom, staircase, totalSteps, gap}`
+
+#### Scenario: Missing objective returns 404
+
+- **WHEN** the `objectiveSlug` does not match any `:LearningObjective`
+  node (or has no `blooms_index`)
+- **THEN** the response is 404
+
+#### Scenario: Unauthenticated request returns 401
+
+- **WHEN** an unauthenticated caller requests
+  `GET /api/scaffolding/hints?objectiveSlug=...`
+- **THEN** the response is 401
+
+### Requirement: LP-SCAFFOLD-2 — Scaffolding service reads learner state
+
+The scaffolding engine SHALL read the learner's current `bloomsMaxReached`
+from their `:ObjectiveState` and the objective's `blooms_index` from
+`:LearningObjective`, both scoped to the `chemie` KG subset.
+
+#### Scenario: Cold-start learner (no ObjectiveState)
+
+- **WHEN** no `:ObjectiveState` exists for the (user, objective) pair
+- **THEN** `learnerBloom` defaults to `0` (full staircase from level 1 to
+  target)
+
+### Requirement: LP-DIFF-1 — Per-learner Bloom target depth
+
+The system SHALL support a per-learner Bloom target depth configuration that limits the maximum Bloom level objectives returned for that learner.
+
+- Each user SHALL have a `targetBloomIndex` (integer 1–6) stored in their profile
+- Default value SHALL be `6` (create level)
+- The `targetBloomIndex` SHALL be configurable via API
+- Bloom levels: `1=remember, 2=understand, 3=apply, 4=analyze, 5=evaluate, 6=create`
+
+#### Scenario: User has default Bloom target
+
+- **WHEN** a new user is created
+- **THEN** their `targetBloomIndex` is `6`
+
+#### Scenario: User configures lower Bloom target
+
+- **WHEN** a user sets `targetBloomIndex` to `3` (apply)
+- **THEN** subsequent next-objective queries return only objectives with `blooms_index <= 3`
+
+### Requirement: LP-DIFF-2 — Bloom depth filtering on next objective
+
+The `nextObjectiveInZPD` computation SHALL respect the learner's `targetBloomIndex` as an additional filter constraint.
+
+- Objectives with `blooms_index > targetBloomIndex` SHALL be excluded from ZPD consideration
+- The existing ZPD conditions (preqAvg >= θ_high, loMastery <= θ_low) remain applicable
+- Bloom depth filtering is an **AND** condition with ZPD conditions
+
+#### Scenario: Objective above target is filtered out
+
+- **GIVEN** user has `targetBloomIndex = 3`
+- **AND** objective `A` has `blooms_index = 4` and is in ZPD by other criteria
+- **WHEN** `GET /api/learning-paths/:slug/next` is called
+- **THEN** objective `A` is NOT returned
+
+#### Scenario: Highest Bloom within target is returned
+
+- **GIVEN** user has `targetBloomIndex = 4`
+- **AND** objectives `A` (bloom=3, in ZPD), `B` (bloom=4, in ZPD), `C` (bloom=5, in ZPD) exist
+- **WHEN** `GET /api/learning-paths/:slug/next` is called
+- **THEN** objective `B` with bloom=4 is returned (highest within target)
+
+#### Scenario: No objectives within target returns empty
+
+- **GIVEN** user has `targetBloomIndex = 2`
+- **AND** all in-ZPD objectives have `blooms_index >= 3`
+- **WHEN** `GET /api/learning-paths/:slug/next` is called
+- **THEN** response has `inZPD: false`
+
+### Requirement: LP-DIFF-3 — Bloom target API endpoints
+
+The system SHALL provide endpoints to retrieve and configure a user's Bloom target.
+
+#### Scenario: Get current Bloom target
+
+- **WHEN** authenticated user calls `GET /api/zpd/bloom-target`
+- **THEN** response contains `targetBloomIndex` and `bloomLevel` string
+- **AND** response contains `isDefault` boolean
+
+#### Scenario: Set Bloom target by index
+
+- **WHEN** authenticated user POSTs `{ targetBloomIndex: 4 }` to `/api/zpd/bloom-target`
+- **THEN** user's target is updated to `4`
+- **AND** response confirms the update
+
+#### Scenario: Set Bloom target by level string
+
+- **WHEN** authenticated user POSTs `{ bloomLevel: "analyze" }` to `/api/zpd/bloom-target`
+- **THEN** user's target is updated to `4` (index for analyze)
+
+#### Scenario: Invalid Bloom target is rejected
+
+- **WHEN** user POSTs `{ targetBloomIndex: 7 }` to `/api/zpd/bloom-target`
+- **THEN** response is `400 Bad Request` with error message
+
+### Requirement: LP-DIFF-4 — Bloom target in path responses
+
+Path detail responses SHALL include the learner's effective Bloom target information.
+
+#### Scenario: Path detail includes Bloom target
+
+- **GIVEN** authenticated user with `targetBloomIndex = 4`
+- **WHEN** calling `GET /api/learning-paths/:slug`
+- **THEN** response contains `bloomTarget.index` and `bloomTarget.level`
+
+#### Scenario: Next endpoint includes Bloom target info
+
+- **WHEN** calling `GET /api/learning-paths/:slug/next`
+- **THEN** response contains `bloomTarget` field
+- **AND** response contains `filteredOutCount` indicating how many objectives were excluded by Bloom depth filter

@@ -1,13 +1,10 @@
-# Spec: zpd-engine (delta for R4 Differentiation)
+# zpd-engine Specification
 
-**Capability:** Bloom × ZPD adaptive engine with per-learner Bloom target depth filtering
-**Change:** zpd-deepdive-differentiation
-**Parent Change:** `bloom-zpd-adaptive-engine`
-**Owners:** pi (BZ-R4)
+## Purpose
 
----
+Bloom × ZPD adaptive engine with per-learner Bloom target depth filtering. The engine computes a learner's next optimal objective within their Zone of Proximal Development, ranks/selects it, recommends an adaptive learning strategy (scaffold / peer / differentiate / tool / assess), and now supports per-learner Bloom depth ceilings ("targetBloomIndex") so the same curricula can be differentiated for learners of different cognitive targets.
 
-## ADDED Requirements
+## Requirements
 
 ### Requirement: ZPD-BLOOM-1 — Bloom target retrieval
 
@@ -140,8 +137,6 @@ function recommendedStrategy(next, opts)
 - **AND** `opts = { targetBloomIndex: 4 }`
 - **THEN** returns `'scaffold'` (unchanged from parent)
 
-## MODIFIED Requirements
-
 ### Requirement: ZPD-CORE-1 (modified) — nextObjectiveInZPD signature
 
 The function signature SHALL be extended to support optional Bloom target parameter while maintaining backward compatibility.
@@ -161,11 +156,10 @@ The function signature SHALL be extended to support optional Bloom target parame
 - **WHEN** `nextObjectiveInZPD(userId, pathSlug)` is called
 - **THEN** it SHALL return the same result as the parent implementation
 
-## Pure Function Requirements
-
 ### Requirement: ZPD-FN-1 — bloomIndex handles all valid inputs
 
 The `bloomIndex()` helper function SHALL correctly map:
+
 - All valid Bloom level strings (case-insensitive) to their 1-6 indices
 - Valid numeric indices (1-6) to themselves
 - Invalid inputs to 0

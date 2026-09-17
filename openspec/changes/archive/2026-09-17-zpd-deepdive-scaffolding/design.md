@@ -27,14 +27,14 @@ craft actual hints.
 
 ### Bloom levels and German verb labels
 
-| Index | Level       | German verb label      | Scaffold descriptor                                    |
-| ----- | ----------- | ---------------------- | ------------------------------------------------------ |
-| 1     | remember    | *Erinnern*             | Abruf von Fakten, Definitionen, Formeln               |
-| 2     | understand  | *Verstehen*            | Erklärung in eigenen Worten, Zusammenhänge erkennen    |
-| 3     | apply       | *Anwenden*             | Transfer auf neues Beispiel, Berechnung durchführen   |
-| 4     | analyze     | *Analysieren*          | Struktur zerlegen, Muster erkennen, vergleichen       |
-| 5     | evaluate    | *Bewerten*             | Kritische Bewertung, Argumente abwägen, Stellung nehmen|
-| 6     | create      | *Erschaffen*           | Neues Modell entwerfen, Experiment planen, Synthese   |
+| Index | Level      | German verb label | Scaffold descriptor                                     |
+| ----- | ---------- | ----------------- | ------------------------------------------------------- |
+| 1     | remember   | _Erinnern_        | Abruf von Fakten, Definitionen, Formeln                 |
+| 2     | understand | _Verstehen_       | Erklärung in eigenen Worten, Zusammenhänge erkennen     |
+| 3     | apply      | _Anwenden_        | Transfer auf neues Beispiel, Berechnung durchführen     |
+| 4     | analyze    | _Analysieren_     | Struktur zerlegen, Muster erkennen, vergleichen         |
+| 5     | evaluate   | _Bewerten_        | Kritische Bewertung, Argumente abwägen, Stellung nehmen |
+| 6     | create     | _Erschaffen_      | Neues Modell entwerfen, Experiment planen, Synthese     |
 
 ### Staircase computation
 
@@ -88,25 +88,21 @@ function computeStaircase(bloomsMaxReached, targetBloom) {
 `hintType` per level (used by private prompt templates to select the
 prompt strategy):
 
-| Bloom level | hintType                |
-| ----------- | ----------------------- |
-| remember    | `direct-recall`         |
-| understand  | `analogy`               |
-| apply       | `worked-example`        |
-| analyze     | `socratic-question`     |
-| evaluate    | `compare-contrast`      |
-| create      | `open-ended-challenge`  |
+| Bloom level | hintType               |
+| ----------- | ---------------------- |
+| remember    | `direct-recall`        |
+| understand  | `analogy`              |
+| apply       | `worked-example`       |
+| analyze     | `socratic-question`    |
+| evaluate    | `compare-contrast`     |
+| create      | `open-ended-challenge` |
 
 ## Service: `api/services/scaffolding-engine.js`
 
 ### Public API
 
 ```js
-import {
-  computeStaircase,
-  scaffoldingPlan,
-  BLOOM_METADATA,
-} from './scaffolding-engine.js';
+import { computeStaircase, scaffoldingPlan, BLOOM_METADATA } from './scaffolding-engine.js';
 ```
 
 #### `computeStaircase(bloomsMaxReached, targetBloom) → Array<Step>`
@@ -136,9 +132,9 @@ Scoped to `chemie` subset via `subsetMatch()`.
 
 ## Route: `GET /api/scaffolding/hints` (auth required)
 
-| Param           | Location | Required | Description                           |
-| --------------- | -------- | -------- | ------------------------------------- |
-| `objectiveSlug` | query    | yes      | The learning objective to scaffold   |
+| Param           | Location | Required | Description                        |
+| --------------- | -------- | -------- | ---------------------------------- |
+| `objectiveSlug` | query    | yes      | The learning objective to scaffold |
 
 Response 200:
 

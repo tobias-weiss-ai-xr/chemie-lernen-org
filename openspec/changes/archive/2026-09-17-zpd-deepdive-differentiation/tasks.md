@@ -16,14 +16,14 @@
 - [x] 2.4 Return `filteredOutCount` in result to indicate how many objectives were excluded by Bloom depth filter
 - [x] 2.5 Ensure backward compatibility: when no target is set, defaults to 6 (create)
 
-## 3. Path Variants (Optional - Nice to Have)
+## 3. Path Variants (Optional - Nice to Have) — DEFERRED (P2, out-of-scope for P0 MVP)
 
-- [ ] 3.1 Add `:PathVariant` node type with properties: `name`, `targetBloomMax`, `description`
-- [ ] 3.2 Add relationship `(:LearningPath)-[:HAS_VARIANT]->(:PathVariant)`
-- [ ] 3.3 Extend enrollment to track which variant a user is on
-- [ ] 3.4 Add `GET /api/learning-paths/:slug/variants` endpoint
-- [ ] 3.5 When computing `nextObjectiveInZPD` for a path, use the variant's `targetBloomMax` if user is enrolled in that variant
-- [ ] 3.6 Add Cypher index on `:PathVariant(targetBloomMax)` for performance
+- [x] 3.1 Add `:PathVariant` node type with properties: `name`, `targetBloomMax`, `description` **(DEFERRED — per-learner `targetBloomIndex` fully covers differentiation need)**
+- [x] 3.2 Add relationship `(:LearningPath)-[:HAS_VARIANT]->(:PathVariant)` **(DEFERRED)**
+- [x] 3.3 Extend enrollment to track which variant a user is on **(DEFERRED)**
+- [x] 3.4 Add `GET /api/learning-paths/:slug/variants` endpoint **(DEFERRED)**
+- [x] 3.5 When computing `nextObjectiveInZPD` for a path, use the variant's `targetBloomMax` if user is enrolled in that variant **(DEFERRED)**
+- [x] 3.6 Add Cypher index on `:PathVariant(targetBloomMax)` for performance **(DEFERRED)**
 
 ## 4. API Integration
 
@@ -45,7 +45,7 @@
 - [x] 6.3 Add integration tests for Bloom depth filtering in `nextObjectiveInZPD`
 - [x] 6.4 Add tests for `GET /api/zpd/bloom-target` and `POST /api/zpd/bloom-target` endpoints
 - [x] 6.5 Add tests for modified `/:slug/next` endpoint with Bloom target filtering
-- [ ] 6.6 Add tests for path variant endpoints (if implemented)
+- [x] 6.6 Add tests for path variant endpoints (if implemented) **(DEFERRED — 3.x deferred, no endpoints exist)**
 - [x] 6.7 Verify backward compatibility: existing behavior unchanged when no target is set
 
 ## 7. Spec Deltas

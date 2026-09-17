@@ -16,18 +16,19 @@ The engine filters the next-objective-in-ZPD query to respect each learner's tar
 
 ## Artifacts
 
-| File | Purpose |
-| ---- | ------- |
-| `proposal.md` | Why this change exists and what it modifies |
-| `design.md` | Detailed technical design and API contracts |
-| `tasks.md` | Implementation checklist |
-| `specs/zpd-engine/spec.md` | Delta spec for ZPD engine extensions |
+| File                           | Purpose                                            |
+| ------------------------------ | -------------------------------------------------- |
+| `proposal.md`                  | Why this change exists and what it modifies        |
+| `design.md`                    | Detailed technical design and API contracts        |
+| `tasks.md`                     | Implementation checklist                           |
+| `specs/zpd-engine/spec.md`     | Delta spec for ZPD engine extensions               |
 | `specs/learning-paths/spec.md` | Delta spec for learning paths with Bloom filtering |
-| `specs/gamification/spec.md` | Delta spec for user profile Bloom target |
+| `specs/gamification/spec.md`   | Delta spec for user profile Bloom target           |
 
 ## Validation
 
 Run the acceptance gate:
+
 ```bash
 npx openspec validate zpd-deepdive-differentiation
 ```
@@ -39,7 +40,7 @@ npx openspec validate zpd-deepdive-differentiation
 ## Related Changes (Roadmap)
 
 - **R1** — Formative assessment unification
-- **R2** — Scaffolding engine  
+- **R2** — Scaffolding engine
 - **R3** — Peer collaboration
 - **R4** — Differentiation (this change)
 - **R5** — Technology tool integration

@@ -10,16 +10,17 @@ This deep dive extends the Bloom × ZPD adaptive engine with **per-learner Bloom
 
 Each user has a `targetBloomIndex` (integer 1-6) representing their highest expected Bloom level:
 
-| Level | Bloom | Description |
-| ----- | ----- | ----------- |
-| 1 | remember | Recall facts |
-| 2 | understand | Explain concepts |
-| 3 | apply | Use knowledge in new situations |
-| 4 | analyze | Break down complex ideas |
-| 5 | evaluate | Judge or critique |
-| 6 | create | Design or construct |
+| Level | Bloom      | Description                     |
+| ----- | ---------- | ------------------------------- |
+| 1     | remember   | Recall facts                    |
+| 2     | understand | Explain concepts                |
+| 3     | apply      | Use knowledge in new situations |
+| 4     | analyze    | Break down complex ideas        |
+| 5     | evaluate   | Judge or critique               |
+| 6     | create     | Design or construct             |
 
 Storage: User profile in `users.json` / `auth-db.js`:
+
 ```json
 {
   "id": "user123",
@@ -32,11 +33,13 @@ Default: `6` (create) — full progression for all learners unless customized.
 ### Path Variants (Optional)
 
 Learning paths can offer multiple variants, each targeting a different Bloom depth range. This allows educators to create:
+
 - **Foundational variant**: targetBloomMax = 3 (apply) — for learners needing conceptual mastery
-- **Standard variant**: targetBloomMax = 5 (evaluate) — default balanced approach  
+- **Standard variant**: targetBloomMax = 5 (evaluate) — default balanced approach
 - **Advanced variant**: targetBloomMax = 6 (create) — for learners aiming for highest cognition
 
 Neo4j schema extension (optional - paths may simply use learner's target):
+
 ```cypher
 (:LearningPath {slug, title, description})
   -[:HAS_VARIANT]->(:PathVariant {name, targetBloomMax})
@@ -86,6 +89,7 @@ Returns the current user's Bloom target configuration.
 Sets the current user's Bloom target.
 
 Request body:
+
 ```json
 {
   "targetBloomIndex": 4
@@ -97,6 +101,7 @@ Request body:
 ```
 
 Response:
+
 ```json
 {
   "targetBloomIndex": 4,
@@ -125,13 +130,15 @@ Returns available variants for a path.
 Extended to support variant selection:
 
 Request body:
+
 ```json
 {
-  "variant": "foundational"  // optional
+  "variant": "foundational" // optional
 }
 ```
 
 Response includes the effective target:
+
 ```json
 {
   "enrolled": true,
@@ -160,9 +167,11 @@ Now respects Bloom target filtering:
 ### nextObjectiveInZPD(userId, pathSlug, targetBloomIndex)
 
 Additional parameter:
+
 - `targetBloomIndex` (number, optional): Maximum Bloom index to consider. If not provided, uses user's stored target (or default 6).
 
 Modified Cypher (key addition in WHERE clause):
+
 ```cypher
 WHERE prereqAvg >= $thetaHigh
   AND loMastery <= $thetaLow
@@ -210,11 +219,11 @@ async function setBloomTarget(userId, target) {
 
 The `recommendedStrategy` function may return `'differentiate'` more frequently in these scenarios:
 
-| Condition | Strategy |
-| --------- |----------|
-| Objective's Bloom index == learner's targetBloomIndex | `differentiate` (suggest switching to easier path variant) |
-| No objectives found within targetBloomIndex | `differentiate` (suggest increasing target or switching variant) |
-| Learner consistently masters at target level | `differentiate` (suggest advancing target) |
+| Condition                                             | Strategy                                                         |
+| ----------------------------------------------------- | ---------------------------------------------------------------- |
+| Objective's Bloom index == learner's targetBloomIndex | `differentiate` (suggest switching to easier path variant)       |
+| No objectives found within targetBloomIndex           | `differentiate` (suggest increasing target or switching variant) |
+| Learner consistently masters at target level          | `differentiate` (suggest advancing target)                       |
 
 ## Fallback Behavior
 

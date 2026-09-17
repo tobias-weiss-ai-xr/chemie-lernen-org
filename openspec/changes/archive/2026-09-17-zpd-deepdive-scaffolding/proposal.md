@@ -34,7 +34,7 @@ exposes:
 
 The actual **hint text generation** (LLM prompts) remains in the private
 `chemie-core` feedback-engine and exercise generator. This change provides
-the scaffolding *plan* (which Bloom levels, how many steps, what verbs)
+the scaffolding _plan_ (which Bloom levels, how many steps, what verbs)
 that those private services consume.
 
 ### Explicitly OUT of scope

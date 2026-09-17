@@ -83,6 +83,7 @@ The system SHALL validate Bloom target values on update.
 ### GET /api/gamification/profile (extended)
 
 Response SHALL include:
+
 ```json
 {
   "id": "user123",
@@ -97,6 +98,7 @@ Response SHALL include:
 ### POST /api/gamification/profile (extended)
 
 Request body MAY include:
+
 ```json
 {
   "targetBloomIndex": 4

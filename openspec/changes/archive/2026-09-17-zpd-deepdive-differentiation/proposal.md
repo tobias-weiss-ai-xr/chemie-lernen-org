@@ -2,7 +2,7 @@
 
 ## Why
 
-The Bloom × ZPD adaptive engine (parent change: `bloom-zpd-adaptive-engine`) establishes a unified learner-state model and computes the next optimal learning objective. However, it assumes all learners should progress through the same Bloom levels to the maximum (level 6: create). 
+The Bloom × ZPD adaptive engine (parent change: `bloom-zpd-adaptive-engine`) establishes a unified learner-state model and computes the next optimal learning objective. However, it assumes all learners should progress through the same Bloom levels to the maximum (level 6: create).
 
 In real classrooms, **differentiation** is a core ZPD classroom strategy: different learners have different cognitive targets. Some learners may be working towards **understanding** (Bloom level 2), while advanced learners aim for **create** (Bloom level 6). The current engine does not account for individual Bloom depth targets.
 
@@ -18,6 +18,7 @@ This deep dive (R4) implements **per-learner Bloom target depth** — allowing t
 ### Relationship to Parent Change
 
 This change consumes and extends the engine from `bloom-zpd-adaptive-engine`:
+
 - Uses the existing `:ObjectiveState` model and `nextObjectiveInZPD` function
 - Adds Bloom depth filtering as an additional constraint
 - Does NOT modify the core ZPD math or learner-state model

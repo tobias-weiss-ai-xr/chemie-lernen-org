@@ -32,5 +32,5 @@
 ## 4. Spec sync & archive
 
 - [x] 4.1 Verify delta specs pass `npx openspec validate
-    zpd-deepdive-scaffolding`.
-- [ ] 4.2 (Future) Archive after implementation is complete.
+  zpd-deepdive-scaffolding`.
+- [x] 4.2 (Future) Archive after implementation is complete.
