@@ -35,8 +35,7 @@ von `baseof.html`.
 - `{{ if ne .URL "#" }}` → neuer Split-Branch:
   - `<a href="{{ .URL }}" class="dropdown-label" aria-label="{{ .Name }}">`
   - `<a href="#" class="dropdown-toggle dropdown-caret" role="button"
-aria-haspopup="true" aria-expanded="false" aria-label="{{ .Name }} Menü anzeigen">`
-    - Submenü (Kinder + ggf. `dropdown-submenu`).
+aria-haspopup="true" aria-expanded="false" aria-label="{{ .Name }} Menü anzeigen">` - Submenü (Kinder + ggf. `dropdown-submenu`).
 - `{{ else }}` → bisheriger `<a href="#" class="dropdown-toggle">`-Branch
   (unverändert für Interaktiv/Mehr/Rechner).
 

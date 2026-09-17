@@ -25,6 +25,7 @@ Last updated: 2026-09-04
 | Elements API                    | `elements-api/spec.md`              | Active                                         | Sisyphus | sprint-24-3d-visualizations                             |
 | Research Pipeline (Forschung)   | `chemie-forschung-pipeline/spec.md` | Active                                         | pi       | research-entity-coverage                                |
 | Research Curation Gate          | `chemie-forschung-curation/spec.md` | Active                                         | pi       | kg-curation-gate                                        |
+| Lehrende-Hub                    | `lehrende-hub/spec.md`              | Active (hub page, split-dropdown, WCAG)        | Sisyphus | lehrende-section-overview                               |
 
 ## Active changes (`changes/`)
 
@@ -38,6 +39,7 @@ Last updated: 2026-09-04
 | per-element-learning-rooms        | 22/23 | **deferred 2026-09-16** (komplett Hubs/hello-webxr)               |
 | hubs-scene-templates              | 19/20 | **deferred 2026-09-16** (Visual-Pass = menschliche Review)        |
 | zpd-deepdive-scaffolding          | 7/7   | ✓ Complete (archived 2026-09-17)                                  |
+| lehrende-section-overview         | 10/10 | ✓ Complete (archived 2026-09-17)                                  |
 
 ## Archived changes (`changes/archive/`)
 
