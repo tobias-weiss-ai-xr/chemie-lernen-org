@@ -31,7 +31,7 @@ launch parameters.
   objective-type tags (spatial, quantitative, conceptual).
 - Implement `resolveTool(objectiveSlug, bloomsIndex, objectiveTags?)` in a
   new `api/services/tool-router.js` — returns `{ toolId, toolType, launchUrl,
-  rationale }`.
+rationale }`.
 - Extend the `recommendedStrategy` activator condition for `tool`: replace the
   generic "spatial/visual objective & level allows" placeholder with actual
   Bloom-level + tag-based routing via the tool registry.
@@ -45,11 +45,13 @@ launch parameters.
 ## Capabilities
 
 ### New Capabilities
+
 - `tech-tool-routing`: Tool registry + ZPD-aware resolver that maps
   (Bloom level, objective tags) → concrete interactive tool recommendations
   with launch context.
 
 ### Modified Capabilities
+
 - `learning-paths`: `nextInZPD` gains a `toolRecommendation` field when
   `recommendedStrategy = "tool"`. The `/:slug/next` endpoint includes
   tool launch data.

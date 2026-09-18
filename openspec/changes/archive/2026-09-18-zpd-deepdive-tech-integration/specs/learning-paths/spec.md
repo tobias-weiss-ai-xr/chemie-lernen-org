@@ -15,7 +15,7 @@ using the tool router (see `tech-tool-routing` spec) rather than a generic
 heuristic:
 
 - `recommendedStrategy` MUST be set to `tool` when `resolveTool(bloomsIndex,
-  objectiveTags)` returns a non-null tool match.
+objectiveTags)` returns a non-null tool match.
 - When `tool` matches, the response SHALL include a `toolRecommendation`
   object with `{ toolId, toolType, launchUrl, rationale }`.
 - When `tool` does not match (resolver returns `null`), the activator SHALL

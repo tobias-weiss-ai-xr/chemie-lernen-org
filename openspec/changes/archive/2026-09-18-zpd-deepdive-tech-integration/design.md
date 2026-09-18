@@ -10,11 +10,11 @@ assess }`. The `tool` strategy currently triggers on a vague heuristic
 
 The platform already ships three categories of interactive tools:
 
-| Category | Examples | Best Bloom band | Skill focus |
-|----------|----------|-----------------|-------------|
+| Category             | Examples                                          | Best Bloom band            | Skill focus                      |
+| -------------------- | ------------------------------------------------- | -------------------------- | -------------------------------- |
 | **3D visualization** | `molekuel-studio`, orbital viewer, periodic table | 2–4 (understand → analyze) | Spatial/structural understanding |
-| **Calculator** | 30+ stoichiometry, gas-law, pH, redox tools | 3–5 (apply → evaluate) | Quantitative problem-solving |
-| **AI assistant** | KI-Assistent (LLM chat + RAG) | 4–6 (analyze → create) | Open-ended reasoning, synthesis |
+| **Calculator**       | 30+ stoichiometry, gas-law, pH, redox tools       | 3–5 (apply → evaluate)     | Quantitative problem-solving     |
+| **AI assistant**     | KI-Assistent (LLM chat + RAG)                     | 4–6 (analyze → create)     | Open-ended reasoning, synthesis  |
 
 These tools are loaded via `LazyLoader` and served as Hugo pages. They
 already exist and work — R5 only adds the routing intelligence.
@@ -22,6 +22,7 @@ already exist and work — R5 only adds the routing intelligence.
 ## Goals / Non-Goals
 
 **Goals:**
+
 - Replace the generic `tool` strategy condition with a concrete resolver
   based on Bloom level + objective tags.
 - Return actionable tool metadata (`toolId`, `toolType`, `launchUrl`,
@@ -31,6 +32,7 @@ already exist and work — R5 only adds the routing intelligence.
   routing decisions).
 
 **Non-Goals:**
+
 - Modifying existing tool internals (molekuel-studio, calculators,
   ki-assistent code stays untouched).
 - Building new tools (R5 only routes to existing ones).
@@ -90,12 +92,12 @@ ceiling → first in registry order.
 
 ## Risks / Trade-offs
 
-| Risk | Mitigation |
-|------|-----------|
-| Tag inference from subtopic is fragile (not all subtopics map cleanly to `spatial`/`quantitative`) | Tags are optional — when absent, the resolver uses only Bloom level, which still gives a valid match. |
-| Static registry gets stale when new tools are added to Hugo | The editorial endpoint (`GET /api/tools`) returns the full registry — content authors can verify coverage. A CI check can flag content pages with tools not in the registry. |
-| Bloom-band boundaries are arbitrary (3D viz at 2–4, calculators at 3–5) | Bands are configurable constants in the registry. R1 (assessment unification) will gather effectiveness data to recalibrate. |
-| Tool router adds a dependency to `zpd-engine.js` | The router is a pure-function module with zero side effects — easy to mock in tests, no coupling risk. |
+| Risk                                                                                               | Mitigation                                                                                                                                                                   |
+| -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tag inference from subtopic is fragile (not all subtopics map cleanly to `spatial`/`quantitative`) | Tags are optional — when absent, the resolver uses only Bloom level, which still gives a valid match.                                                                        |
+| Static registry gets stale when new tools are added to Hugo                                        | The editorial endpoint (`GET /api/tools`) returns the full registry — content authors can verify coverage. A CI check can flag content pages with tools not in the registry. |
+| Bloom-band boundaries are arbitrary (3D viz at 2–4, calculators at 3–5)                            | Bands are configurable constants in the registry. R1 (assessment unification) will gather effectiveness data to recalibrate.                                                 |
+| Tool router adds a dependency to `zpd-engine.js`                                                   | The router is a pure-function module with zero side effects — easy to mock in tests, no coupling risk.                                                                       |
 
 ## Data flow
 
@@ -122,7 +124,7 @@ const TOOL_REGISTRY = [
   {
     toolId: 'molekuel-studio',
     toolType: 'visualization',
-    bloomRange: [2, 4],       // understand → analyze
+    bloomRange: [2, 4], // understand → analyze
     objectiveTags: ['spatial', 'structural'],
     launchUrl: '/molekuel-studio/',
     description: '3D molecule viewer for spatial understanding of molecular structures',
@@ -130,7 +132,7 @@ const TOOL_REGISTRY = [
   {
     toolId: 'perioden-system',
     toolType: 'visualization',
-    bloomRange: [1, 2],       // remember → understand
+    bloomRange: [1, 2], // remember → understand
     objectiveTags: ['spatial', 'structural'],
     launchUrl: '/perioden-system-der-elemente/',
     description: 'Interactive periodic table for element exploration and classification',
@@ -138,7 +140,7 @@ const TOOL_REGISTRY = [
   {
     toolId: 'stoichiometry-calculator',
     toolType: 'calculator',
-    bloomRange: [3, 5],       // apply → evaluate
+    bloomRange: [3, 5], // apply → evaluate
     objectiveTags: ['quantitative', 'reaction'],
     launchUrl: '/stoichiometrie-rechner/',
     description: 'Stoichiometry calculator for quantitative reaction analysis',
@@ -146,7 +148,7 @@ const TOOL_REGISTRY = [
   {
     toolId: 'ki-assistent',
     toolType: 'ai-assistant',
-    bloomRange: [4, 6],       // analyze → create
+    bloomRange: [4, 6], // analyze → create
     objectiveTags: ['conceptual', 'synthesis', 'evaluation'],
     launchUrl: '/ki-assistent/',
     description: 'AI chat assistant for open-ended chemistry reasoning and synthesis',

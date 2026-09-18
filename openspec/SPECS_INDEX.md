@@ -26,6 +26,7 @@ Last updated: 2026-09-04
 | Research Pipeline (Forschung)   | `chemie-forschung-pipeline/spec.md` | Active                                         | pi       | research-entity-coverage                                |
 | Research Curation Gate          | `chemie-forschung-curation/spec.md` | Active                                         | pi       | kg-curation-gate                                        |
 | Lehrende-Hub                    | `lehrende-hub/spec.md`              | Active (hub page, split-dropdown, WCAG)        | Sisyphus | lehrende-section-overview                               |
+| Tech Tool Routing               | `tech-tool-routing/spec.md`         | Active (ZPD-aware tool registry + resolver)    | Sisyphus | zpd-deepdive-tech-integration                           |
 
 ## Active changes (`changes/`)
 
@@ -35,7 +36,7 @@ Last updated: 2026-09-04
 | zpd-deepdive-differentiation      | 43/43 | ✓ Complete (archived 2026-09-17)                                  |
 | zpd-deepdive-formative-assessment | 19/19 | ✓ Complete (archived 2026-09-16)                                  |
 | zpd-deepdive-peer-collaboration   | 13/13 | ✓ Complete (archived 2026-09-16)                                  |
-| zpd-deepdive-tech-integration     | 11/11 | ✓ Complete (validated 2026-09-16)                                 |
+| zpd-deepdive-tech-integration     | 11/11 | ✓ Complete (archived 2026-09-18)                                  |
 | per-element-learning-rooms        | 22/23 | **deferred 2026-09-16** (komplett Hubs/hello-webxr)               |
 | hubs-scene-templates              | 19/20 | **deferred 2026-09-16** (Visual-Pass = menschliche Review)        |
 | zpd-deepdive-scaffolding          | 7/7   | ✓ Complete (archived 2026-09-17)                                  |

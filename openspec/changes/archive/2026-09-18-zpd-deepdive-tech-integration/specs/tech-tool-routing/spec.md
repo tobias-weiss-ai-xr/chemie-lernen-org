@@ -57,6 +57,7 @@ The system SHALL expose a `resolveTool(bloomsIndex, objectiveTags?)` function
 that returns the best-matching tool from the registry.
 
 Selection algorithm:
+
 1. Filter registry entries where `bloomsIndex ∈ bloomRange` AND
    (`objectiveTags` is empty/unset OR at least one tag overlaps with the
    entry's `objectiveTags`).

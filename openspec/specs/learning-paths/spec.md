@@ -121,6 +121,20 @@ classroom strategy applies, so downstream services can specialize behavior.
 - **WHEN** `0.6 < mastery < 0.8`
 - **THEN** `recommendedStrategy` is `assess`
 
+#### Scenario: Tool strategy reflects resolver match
+
+- **WHEN** the next objective has Bloom index 3 with `spatial` tag
+- **AND** the tool resolver finds a visualization matching `[2, 4]`
+- **THEN** `recommendedStrategy` is `tool`
+- **AND** `toolRecommendation.toolType` is `visualization`
+
+#### Scenario: Tool recommendation in next endpoint
+
+- **WHEN** an enrolled user calls `GET /api/learning-paths/:slug/next`
+- **AND** the recommended strategy is `tool`
+- **THEN** the response includes `toolRecommendation` with `toolId`,
+  `toolType`, `launchUrl`, and `rationale`
+
 ### Requirement: LP-ZPD-3 — Mastery ingestion endpoint
 
 The system SHALL provide `POST /api/zpd/mastery` (auth required) accepting
@@ -144,6 +158,13 @@ the computed next objective slug, its Bloom index, and the `recommendedStrategy`
 
 - **WHEN** an enrolled user fetches path detail
 - **THEN** the response contains `nextInZPD.next.slug` and `nextInZPD.recommendedStrategy`
+
+#### Scenario: Authenticated detail includes toolRecommendation
+
+- **WHEN** an enrolled user fetches path detail
+- **AND** the next-in-ZPD strategy is `tool`
+- **THEN** the response contains `nextInZPD.toolRecommendation.toolId` and
+  `nextInZPD.toolRecommendation.launchUrl`
 
 ### Requirement: LP-ZPD-5 — Threshold configuration endpoint
 
