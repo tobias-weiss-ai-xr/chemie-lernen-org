@@ -338,5 +338,15 @@
     "durationMs": 120925,
     "model": "glm-5.2",
     "durationMin": "2.0"
+  },
+  {
+    "startedAt": "2026-09-18T02:42:11.176Z",
+    "articlesGenerated": 3,
+    "articlesFailed": 0,
+    "feedErrors": 0,
+    "kgErrors": 0,
+    "durationMs": 154888,
+    "model": "glm-5.2",
+    "durationMin": "2.6"
   }
 ]
