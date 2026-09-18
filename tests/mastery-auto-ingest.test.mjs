@@ -12,6 +12,12 @@
 import { vi, describe, test, expect, beforeEach, afterEach } from 'vitest';
 import express from 'express';
 
+// The route chain imports api/auth.js, which requires JWT_SECRET.
+// Provide a test fallback so the module loads even when JWT_SECRET is
+// unset (e.g. on CI runners without the local env).
+process.env.JWT_SECRET =
+  process.env.JWT_SECRET || 'test-secret-for-auto-ingest-0123456789abcdef01234';
+
 // Mock stores & aggregation so the route never touches Neo4j / files.
 vi.mock(
   '../api/auth-db.js',
