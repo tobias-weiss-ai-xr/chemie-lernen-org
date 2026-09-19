@@ -36,7 +36,7 @@ Scanne den QR-Code mit deinem Android-Smartphone oder lade die App direkt als AP
 <!-- UXF-048: lazy statt Markdown-img · UXF-055: 240px statt 540px volle Breite -->
 <img src="/qr-chemie-lernen.png" alt="QR-Code chemie-lernen Android-App" width="240" height="240" loading="lazy" decoding="async" class="qr-app" />
 
-- [📥 Android-App (APK) herunterladen](https://ki-kompetenz-training.org/fdroid/repo/org.chemie_lernen_org.free_1.apk)
-- [🔄 Updates über F-Droid beziehen](https://ki-kompetenz-training.org/fdroid/repo?fingerprint=3AE125374E2120983AC778DE5A2FA82932CE4304C628390D007F8C3A20E49577)
+- [📥 Android-App (APK) herunterladen](https://fdroid.contextual-intelligence.org/fdroid/repo/ai.chemistry_learning_org_6.apk)
+- [🔄 Updates über F-Droid beziehen](https://fdroid.contextual-intelligence.org/fdroid/repo?fingerprint=7037652B44D1D0B0C7191D69A79E62E6EBFA861F62CF761A1DAF39F5A7153971)
 
 *Frei von Google Play Services · Open Source (Apache-2.0)*
